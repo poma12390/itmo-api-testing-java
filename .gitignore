@@ -1,0 +1,10 @@
+target/
+.m2/
+.tools/
+reports/
+.idea/
+.vscode/
+*.iml
+.DS_Store
+.env
+.env.*
