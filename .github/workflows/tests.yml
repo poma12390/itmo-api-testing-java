@@ -1,0 +1,43 @@
+name: API tests
+
+on:
+  push:
+    branches: [main, lab2, "homework-*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ["21", "25"]
+    env:
+      MAVEN_USER_HOME: ${{ github.workspace }}/.m2
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - uses: actions/cache@v4
+        with:
+          path: .m2
+          key: maven-${{ runner.os }}-${{ matrix.java }}-${{ hashFiles('pom.xml') }}
+          restore-keys: maven-${{ runner.os }}-${{ matrix.java }}-
+      - name: Build and test
+        run: ./mvnw -B verify
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-java-${{ matrix.java }}
+          path: |
+            target/surefire-reports/
+            target/site/jacoco/
+          if-no-files-found: ignore
