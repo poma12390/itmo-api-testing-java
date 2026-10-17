@@ -10,6 +10,24 @@
 Проверил это же приложение через Swagger UI и HTTP: 102 пункта в чек-листе,
 99 выполнены, найдены три воспроизводимых дефекта. Код приложения в этой работе не менял.
 
+Практическая работа по автоматизации UI-тестирования:
+[отчёт и инструкция запуска](docs/ui-testing/README.md).
+Добавил пять автотестов на Playwright for Java и JUnit 5 с паттерном Page Object
+для того же Swagger UI. Работа находится в ветке `codex/ui-testing`.
+Проверил чистую сборку на JDK 25: все 5 UI-тестов и 95 API-тестов проходят.
+
+Первый запуск UI-тестов из корня проекта:
+
+```bash
+PLAYWRIGHT_BROWSERS_PATH="$PWD/.tools/ms-playwright" \
+  ./mvnw exec:java -Dexec.args="install chromium"
+./mvnw -Pui verify
+```
+
+Приложение запускается автоматически на свободном порту. При следующих запусках
+достаточно второй команды. Обычный `./mvnw verify` по-прежнему запускает API-тесты;
+профиль `ui` добавляет браузерные тесты на этапе `integration-test`.
+
 ## Запуск
 
 Нужен JDK 21 или 25. Maven Wrapper сам скачает Maven и зависимости:
@@ -89,6 +107,7 @@ REST Assured использует OpenAPI Request Validator для провер�
 
 ## CI
 
-GitHub Actions выполняет `./mvnw verify` на JDK 21 и 25 при push и в PR.
-JUnit-отчёты и покрытие JaCoCo сохраняются в артефактах запуска.
+GitHub Actions устанавливает Chromium и выполняет `./mvnw -Pui verify` на JDK 21
+и 25 при push и в PR. JUnit-отчёты, скриншоты, HTML страниц, трассировки Playwright
+и покрытие JaCoCo сохраняются в артефактах запуска.
 Локальный HTML-отчёт покрытия: `target/site/jacoco/index.html`. Порог покрытия — 85% строк.

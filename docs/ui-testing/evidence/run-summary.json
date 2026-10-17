@@ -1,0 +1,66 @@
+{
+  "command": "MAVEN_USER_HOME=\"$PWD/.m2\" ./mvnw -o -B --no-transfer-progress -Pui clean verify",
+  "exitCode": 0,
+  "buildResult": "BUILD SUCCESS",
+  "finishedAt": "2026-10-18T00:20:17+04:00",
+  "mavenSeconds": 27.6,
+  "baseCommit": "f032364818ba60aafe6bebf271635da9c4706646",
+  "branch": "codex/ui-testing",
+  "tests": {
+    "api": 95,
+    "ui": 5,
+    "total": 100,
+    "passed": 100,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "coverage": {
+    "lineCovered": 77,
+    "lineMissed": 4,
+    "linePercent": 95.06,
+    "minimumPercent": 85
+  },
+  "browserCacheEntries": [
+    "chromium-1243",
+    "chromium_headless_shell-1243",
+    "ffmpeg-1011"
+  ],
+  "jarSha256": "15a48ec16838cf3e126b0ff445f75b8bc523efa417dae7f6896036da40240f05",
+  "sourceSha256": {
+    "pom.xml": "d0a2704062f9e9f397c3347cf3a39c4dbe92eaec36877b66487e005fc937ea9d",
+    ".github/workflows/tests.yml": "1701a5fbc68b82d6ee1f2b100ddf0da31e2677101986bb2620eb0745c0350f31",
+    "openapi.json": "0fe808558b6dfad1ab2c19815913247ea721a40a64f6c81c4e820e717c10b0f4",
+    "src/main/java/ru/itmo/api/ApiError.java": "e872732e4e0dd22c52f8a096fa1f194d3c58b7873c8dc001be53f702fbb56a40",
+    "src/main/java/ru/itmo/api/ApiExceptionHandler.java": "e7d1d58260a1efb789eae051454b91651c13cdab888cad92d77177af21d11115",
+    "src/main/java/ru/itmo/api/JacksonConfig.java": "9287b974b39f747d4a2fc030c52fc90ed73b511ef3b841aab311400aab534059",
+    "src/main/java/ru/itmo/api/PriorityDeserializer.java": "3a1ccea05dba5a776e1710ec5e8b6e1e14df27cca696fe3978e7ed0ba8ed20d1",
+    "src/main/java/ru/itmo/api/Task.java": "e40ef749620df11c15df4cf33137f7f90f76a6d114784455e32f5212a463b875",
+    "src/main/java/ru/itmo/api/TaskController.java": "50e7205e9c8a0e8d7705e950f3cee5a8cf3ee06f6bd9ede8f8a11ab92d3b85a4",
+    "src/main/java/ru/itmo/api/TaskNotFoundException.java": "c0d5b67a163925b4e52d4a7998831078abbacf7929d941a2918ff9a0d0236284",
+    "src/main/java/ru/itmo/api/TaskRequest.java": "4a7326c7b07a1070d22ec12f05beb7883390c1f5a00c5844d12dfbfc96f61f9d",
+    "src/main/java/ru/itmo/api/TaskService.java": "190c738ee73c48120bfd29e3d7e59204d23884f1200d09d3274ecf0c2e813480",
+    "src/main/java/ru/itmo/api/TasksApplication.java": "69881764ec1361b30494e321650ffd06a7ef84aa8ea058afe68bd8828f9c7cb6",
+    "src/test/java/ru/itmo/api/ApiTestSupport.java": "1ae8d72ed13c7a507d8b40157d984d96ce8bf326aab59298d4676f7af774e505",
+    "src/test/java/ru/itmo/api/OpenApiGeneratedTest.java": "2fd631ba5ca7dceccf0ab995726ba9dd00870c00b310648136970d85d1e1ffea",
+    "src/test/java/ru/itmo/api/OpenApiSnapshotTest.java": "ae2bb130af53cdd07e52e6991f6d586feff46a7ef4d1d75df97a95ad46e55bf3",
+    "src/test/java/ru/itmo/api/TaskApiTest.java": "f6d02c9560111271da72541d2044769ff9bb1d71468e1633422ad85cc327822c",
+    "src/test/java/ru/itmo/api/TaskUiIT.java": "af91d564161cd8e3d911e60bbf9146b5a9455cf0b5c504d3ed393b0bf00acea1",
+    "src/test/java/ru/itmo/api/UiTestSupport.java": "70e4eb6d6e1d4333a4400e42d81fed343327719041e1a17a4b671c16833f392c",
+    "src/test/java/ru/itmo/ui/UiResponse.java": "387fc6d7ef89b656f9a119f0edb0bb10a1326116d8386025cd69ca62a249e64f",
+    "src/test/java/ru/itmo/ui/pages/OperationPanel.java": "8f6a70aa7fbf781d2585e71cc75a56d07a7b7ef1ab93c9616ec81ec7422e1d2f",
+    "src/test/java/ru/itmo/ui/pages/SwaggerUiPage.java": "0c367175a38c705ff6645952730093d32cf38dd457d80405b36ef404002d84c3",
+    "src/main/resources/application.properties": "52fd41a324d6ee3d35e58435cfaa8830f6da00198f46345c105f736858abdd32"
+  },
+  "evidenceSha256": {
+    "environment.json": "a9bd64020676d2b9a434bc06ddbad9552070910c696c1c4a7b37ff599cdddf6f",
+    "junit.xml": "2e7db8a3707ece668dde9bc6906ffc62456fdfd95339988b645e906be7e287f3",
+    "ui/appliesDefaultsToTaskWithMaximumTitleLength.png": "cbd26a24bbb5a5a6a3e175f5ce0f6d2766725b902692759a7152f611800034af",
+    "ui/createsAndReadsTaskAfterReload.png": "31428ed3649a81c68ca9afefef563fddd55d02ce1138a33953c58247aa1fa169",
+    "ui/deletesTaskAndShowsNotFound.png": "4e2c9b37317d34d12628aab27f3ef43a9de63e6bd185dfd54dc37b063bef8c6e",
+    "ui/rejectsInvalidInputWithoutChangingStoredTask.png": "abcf715a56111cafc52a8513cd36ecefa65069bdfb2aab9141da562e0a8d6b70",
+    "ui/replacesTaskAndPersistsChanges.png": "5885325710dd7e7303f81ac71e41c756408477d29be49df6e82130263d41279a",
+    "ui-results.json": "5318c790eaf548b06a19e5cba44fa2994c680eb5fd19108ab9519767e9ca232d",
+    "verify.txt": "f45999d9ab12d52e607035ff85002f381dcba0c9ee5d58cbad71b75d4b56e782"
+  }
+}
