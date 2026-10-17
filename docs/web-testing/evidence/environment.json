@@ -1,0 +1,23 @@
+{
+  "application": "Tasks API 1.0.0 + Swagger UI",
+  "sourceCommit": "5c663ea7eadbbd830f438680f556f13639cfaecc",
+  "baseUrl": "http://127.0.0.1:18080",
+  "executedAt": "2026-10-17T19:25:40.725Z",
+  "timezone": "Europe/Samara (UTC+04:00)",
+  "os": "macOS 26.7.1 (25G241)",
+  "java": "25.0.2",
+  "artifactSha256": "4e1a1ce7703c9d1ae4db49960ce5174d4f7620a571eea7550295ab841fb3528f",
+  "method": "HTTP requests against a running unmodified JAR; UI results are recorded separately",
+  "summary": {
+    "total": 85,
+    "pass": 79,
+    "fail": 6
+  },
+  "browser": "Codex In-app Browser",
+  "browserEngineVersion": "not exposed",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "startupCommand": "java -jar target/api-testing-lab2-1.0.0.jar --server.address=127.0.0.1 --server.port=18080"
+}

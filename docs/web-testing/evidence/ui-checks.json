@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "date": "2026-10-17",
+    "timezone": "Europe/Samara (UTC+04:00)",
+    "browser": "Codex In-app Browser",
+    "engineVersion": "not exposed by the browser tool",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "method": "Executed through the actual Swagger UI; accessibility snapshots and PNG screenshots are saved separately"
+  },
+  "checks": [
+    {
+      "id": "UI-01",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Открыть Swagger UI",
+      "expected": "Видны Tasks API 1.0.0, OAS 3.1 и все пять операций",
+      "status": "Pass",
+      "evidence": "ui/reload.txt"
+    },
+    {
+      "id": "UI-02",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Раскрыть POST, свернуть его и раскрыть GET",
+      "expected": "Открывается выбранная операция; остальные блоки доступны",
+      "status": "Pass",
+      "evidence": "ui/read.txt"
+    },
+    {
+      "id": "UI-03",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Нажать Try it out, затем Cancel в POST",
+      "expected": "Редактор и Execute доступны в режиме редактирования; после Cancel возвращается Try it out, редактор скрыт",
+      "status": "Pass",
+      "evidence": "ui/cancel.txt"
+    },
+    {
+      "id": "UI-04",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Создать {\"title\":\"Проверка через браузер\",\"priority\":2,\"completed\":false}",
+      "expected": "В Server response показан 201; возвращены id и переданные поля",
+      "status": "Pass",
+      "evidence": "ui/create.txt"
+    },
+    {
+      "id": "UI-05",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "После POST проверить Curl, Request URL и Response headers",
+      "expected": "Метод POST; путь /tasks; application/json; Location указывает на созданный id",
+      "status": "Pass",
+      "evidence": "ui/create.txt"
+    },
+    {
+      "id": "UI-06",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "GET созданной через браузер задачи (в прогоне id=173)",
+      "expected": "В интерфейсе показан 200 и сохранённые значения",
+      "status": "Pass",
+      "evidence": "ui/read.txt"
+    },
+    {
+      "id": "UI-07",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "PUT для того же id: title=\"Обновлено в браузере\", priority=5, completed=true",
+      "expected": "В интерфейсе показан 200; id сохранён, поля заменены",
+      "status": "Pass",
+      "evidence": "ui/update.txt"
+    },
+    {
+      "id": "UI-08",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Удалить созданную задачу через DELETE",
+      "expected": "В интерфейсе показан 204; секции тела ответа нет",
+      "status": "Pass",
+      "evidence": "ui/delete.txt"
+    },
+    {
+      "id": "UI-09",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Повторить DELETE той же задачи",
+      "expected": "В интерфейсе показан 404 и detail=Task not found; форма остаётся доступной",
+      "status": "Pass",
+      "evidence": "ui/not-found.txt"
+    },
+    {
+      "id": "UI-10",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "В POST отправить {}",
+      "expected": "В интерфейсе показан 422, detail=Validation failed, field=title",
+      "status": "Pass",
+      "evidence": "ui/validation.txt"
+    },
+    {
+      "id": "UI-11",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Раскрыть схему TaskRequest",
+      "expected": "title отмечен обязательным; длина 1–100, pattern=\\S; priority 1–5; completed boolean; лишние поля запрещены",
+      "status": "Pass",
+      "evidence": "ui/schema.txt"
+    },
+    {
+      "id": "UI-12",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Перезагрузить страницу Swagger UI",
+      "expected": "Контракт загружается повторно; все операции и формы доступны",
+      "status": "Pass",
+      "evidence": "ui/reload.txt"
+    },
+    {
+      "id": "UI-13",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "В GET /tasks задать limit=1, offset=1 и выполнить запрос после перезагрузки страницы",
+      "expected": "Request URL содержит оба параметра; показан 200 и один второй элемент списка",
+      "status": "Pass",
+      "evidence": "ui/list.txt"
+    }
+  ]
+}
