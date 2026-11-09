@@ -8,6 +8,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.Tracing;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.ZoneId;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -80,7 +82,11 @@ abstract class UiTestSupport {
             return;
         }
         try {
-            Path directory = ARTIFACTS.resolve(test.getTestMethod().orElseThrow().getName());
+            Method method = test.getTestMethod().orElseThrow();
+            Path directory = ARTIFACTS.resolve(method.getName());
+            if (method.isAnnotationPresent(ParameterizedTest.class)) {
+                directory = directory.resolve(test.getDisplayName().replaceAll("[^a-zA-Z0-9_-]+", "_"));
+            }
             Files.createDirectories(directory);
             try {
                 if (page != null && !page.isClosed()) {

@@ -52,6 +52,20 @@ public final class SwaggerUiPage {
         return operation("list").execute();
     }
 
+    public UiResponse listTasks(int limit, int offset) {
+        return listOperation(limit, offset).execute();
+    }
+
+    public void expectPaginationError(int limit, int offset, String field, String message) {
+        listOperation(limit, offset).expectParameterError(field, message);
+    }
+
+    private OperationPanel listOperation(int limit, int offset) {
+        return operation("list")
+                .parameter("limit", Integer.toString(limit))
+                .parameter("offset", Integer.toString(offset));
+    }
+
     private void waitUntilLoaded() {
         assertThat(page.locator(".opblock")).hasCount(5);
         assertThat(page.locator(".info .title")).containsText("Tasks API");

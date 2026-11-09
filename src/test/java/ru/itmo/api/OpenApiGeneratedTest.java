@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
 class OpenApiGeneratedTest extends ApiTestSupport {
     @TestFactory
+    @DisplayName("Операции и граничные значения из OpenAPI")
     List<DynamicTest> operationsFromSpecification() throws Exception {
         JsonNode specification = json.readTree(Files.readString(Path.of("openapi.json")));
         List<DynamicTest> tests = new ArrayList<>();
