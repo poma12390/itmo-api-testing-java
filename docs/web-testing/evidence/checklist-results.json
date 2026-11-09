@@ -1,0 +1,1459 @@
+{
+  "date": "2026-10-17",
+  "sourceCommit": "5c663ea7eadbbd830f438680f556f13639cfaecc",
+  "summary": {
+    "total": 102,
+    "executed": 99,
+    "pass": 93,
+    "fail": 6,
+    "notRun": 3,
+    "defects": 3
+  },
+  "checks": [
+    {
+      "id": "UI-01",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Открыть Swagger UI",
+      "expected": "Видны Tasks API 1.0.0, OAS 3.1 и все пять операций",
+      "status": "Pass",
+      "evidence": "ui/reload.txt"
+    },
+    {
+      "id": "UI-02",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Раскрыть POST, свернуть его и раскрыть GET",
+      "expected": "Открывается выбранная операция; остальные блоки доступны",
+      "status": "Pass",
+      "evidence": "ui/read.txt"
+    },
+    {
+      "id": "UI-03",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Нажать Try it out, затем Cancel в POST",
+      "expected": "Редактор и Execute доступны в режиме редактирования; после Cancel возвращается Try it out, редактор скрыт",
+      "status": "Pass",
+      "evidence": "ui/cancel.txt"
+    },
+    {
+      "id": "UI-04",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Создать {\"title\":\"Проверка через браузер\",\"priority\":2,\"completed\":false}",
+      "expected": "В Server response показан 201; возвращены id и переданные поля",
+      "status": "Pass",
+      "evidence": "ui/create.txt"
+    },
+    {
+      "id": "UI-05",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "После POST проверить Curl, Request URL и Response headers",
+      "expected": "Метод POST; путь /tasks; application/json; Location указывает на созданный id",
+      "status": "Pass",
+      "evidence": "ui/create.txt"
+    },
+    {
+      "id": "UI-06",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "GET созданной через браузер задачи (в прогоне id=173)",
+      "expected": "В интерфейсе показан 200 и сохранённые значения",
+      "status": "Pass",
+      "evidence": "ui/read.txt"
+    },
+    {
+      "id": "UI-07",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "PUT для того же id: title=\"Обновлено в браузере\", priority=5, completed=true",
+      "expected": "В интерфейсе показан 200; id сохранён, поля заменены",
+      "status": "Pass",
+      "evidence": "ui/update.txt"
+    },
+    {
+      "id": "UI-08",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Удалить созданную задачу через DELETE",
+      "expected": "В интерфейсе показан 204; секции тела ответа нет",
+      "status": "Pass",
+      "evidence": "ui/delete.txt"
+    },
+    {
+      "id": "UI-09",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Повторить DELETE той же задачи",
+      "expected": "В интерфейсе показан 404 и detail=Task not found; форма остаётся доступной",
+      "status": "Pass",
+      "evidence": "ui/not-found.txt"
+    },
+    {
+      "id": "UI-10",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "В POST отправить {}",
+      "expected": "В интерфейсе показан 422, detail=Validation failed, field=title",
+      "status": "Pass",
+      "evidence": "ui/validation.txt"
+    },
+    {
+      "id": "UI-11",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Раскрыть схему TaskRequest",
+      "expected": "title отмечен обязательным; длина 1–100, pattern=\\S; priority 1–5; completed boolean; лишние поля запрещены",
+      "status": "Pass",
+      "evidence": "ui/schema.txt"
+    },
+    {
+      "id": "UI-12",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "Перезагрузить страницу Swagger UI",
+      "expected": "Контракт загружается повторно; все операции и формы доступны",
+      "status": "Pass",
+      "evidence": "ui/reload.txt"
+    },
+    {
+      "id": "UI-13",
+      "group": "Веб-интерфейс",
+      "requirement": "R-13",
+      "priority": "P2",
+      "action": "В GET /tasks задать limit=1, offset=1 и выполнить запрос после перезагрузки страницы",
+      "expected": "Request URL содержит оба параметра; показан 200 и один второй элемент списка",
+      "status": "Pass",
+      "evidence": "ui/list.txt"
+    },
+    {
+      "id": "HTTP-01",
+      "group": "Контракт",
+      "requirement": "R-01",
+      "priority": "P1",
+      "action": "Открыть /openapi.json и сравнить с файлом проекта",
+      "expected": "200; OpenAPI 3.1; пять операций; контракт совпадает с сохранённым",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "CRUD-01",
+      "group": "Жизненный цикл",
+      "requirement": "R-02",
+      "priority": "P1",
+      "action": "Получить список после удаления всех тестовых задач",
+      "expected": "200 и пустой массив",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        5,
+        5
+      ]
+    },
+    {
+      "id": "CRUD-02",
+      "group": "Жизненный цикл",
+      "requirement": "R-02",
+      "priority": "P1",
+      "action": "Создать задачу с title, priority=2, completed=true",
+      "expected": "201; все поля сохранены; положительный id; Location ведёт к этой задаче",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "CRUD-03",
+      "group": "Жизненный цикл",
+      "requirement": "R-03",
+      "priority": "P1",
+      "action": "Создать задачу только с title",
+      "expected": "201; priority=3, completed=false",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        8,
+        8
+      ]
+    },
+    {
+      "id": "CRUD-04",
+      "group": "Жизненный цикл",
+      "requirement": "R-02",
+      "priority": "P1",
+      "action": "Создать две задачи с одинаковым названием",
+      "expected": "Обе созданы; id различаются; обе доступны",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        9,
+        12
+      ]
+    },
+    {
+      "id": "CRUD-05",
+      "group": "Жизненный цикл",
+      "requirement": "R-02",
+      "priority": "P1",
+      "action": "Прочитать существующую задачу по id",
+      "expected": "200; значения совпадают с сохранёнными",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        13,
+        14
+      ]
+    },
+    {
+      "id": "CRUD-06",
+      "group": "Жизненный цикл",
+      "requirement": "R-04",
+      "priority": "P1",
+      "action": "Заменить все поля задачи; проверить соседнюю задачу",
+      "expected": "200; id прежний; новые поля сохранены; соседняя задача не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        15,
+        19
+      ]
+    },
+    {
+      "id": "CRUD-07",
+      "group": "Жизненный цикл",
+      "requirement": "R-03,R-04",
+      "priority": "P1",
+      "action": "PUT только с title для задачи с priority=2, completed=true",
+      "expected": "200; priority сброшен в 3, completed в false; id сохранён",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        20,
+        22
+      ]
+    },
+    {
+      "id": "CRUD-08",
+      "group": "Жизненный цикл",
+      "requirement": "R-04",
+      "priority": "P2",
+      "action": "Дважды выполнить одинаковый PUT",
+      "expected": "Оба ответа 200; итоговое состояние одинаково; число задач не растёт",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        23,
+        27
+      ]
+    },
+    {
+      "id": "CRUD-09",
+      "group": "Жизненный цикл",
+      "requirement": "R-05",
+      "priority": "P1",
+      "action": "Удалить существующую задачу",
+      "expected": "204; тело пустое; в списке задачи нет",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        28,
+        30
+      ]
+    },
+    {
+      "id": "CRUD-10",
+      "group": "Жизненный цикл",
+      "requirement": "R-05,R-09",
+      "priority": "P1",
+      "action": "GET удалённой задачи",
+      "expected": "404; detail=Task not found",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        31,
+        31
+      ]
+    },
+    {
+      "id": "CRUD-11",
+      "group": "Жизненный цикл",
+      "requirement": "R-05,R-09",
+      "priority": "P2",
+      "action": "Повторно удалить ту же задачу",
+      "expected": "404; остальные задачи не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        32,
+        34
+      ]
+    },
+    {
+      "id": "CRUD-12",
+      "group": "Жизненный цикл",
+      "requirement": "R-04,R-09",
+      "priority": "P1",
+      "action": "PUT удалённой задачи",
+      "expected": "404; задача не создаётся; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        35,
+        37
+      ]
+    },
+    {
+      "id": "TITLE-01",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название из одного символа; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        38,
+        60
+      ]
+    },
+    {
+      "id": "TITLE-02",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название из 99 символов кириллицы; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        61,
+        75
+      ]
+    },
+    {
+      "id": "TITLE-03",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название из 100 символов кириллицы; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        76,
+        90
+      ]
+    },
+    {
+      "id": "TITLE-04",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Пустое название; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        91,
+        102
+      ]
+    },
+    {
+      "id": "TITLE-05",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название из 101 символа; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        103,
+        114
+      ]
+    },
+    {
+      "id": "TITLE-06",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Поле title отсутствует; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        115,
+        126
+      ]
+    },
+    {
+      "id": "TITLE-07",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "title=null; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        127,
+        138
+      ]
+    },
+    {
+      "id": "TITLE-08",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название только из ASCII-пробелов, табуляции и перевода строки; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        139,
+        150
+      ]
+    },
+    {
+      "id": "TITLE-09",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "title — число; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        151,
+        162
+      ]
+    },
+    {
+      "id": "TITLE-10",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "title — boolean; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        163,
+        174
+      ]
+    },
+    {
+      "id": "TITLE-11",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "title — массив; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        175,
+        186
+      ]
+    },
+    {
+      "id": "TITLE-12",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "title — объект; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        187,
+        198
+      ]
+    },
+    {
+      "id": "TITLE-13",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Смешанное название с кириллицей и emoji; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        199,
+        213
+      ]
+    },
+    {
+      "id": "TITLE-14",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название из 50 emoji U+1F600; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        214,
+        228
+      ]
+    },
+    {
+      "id": "TITLE-15",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название из 51 emoji U+1F600; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Fail",
+      "actual": "POST: HTTP 422, ожидался 201; состояние не изменилось; PUT: HTTP 422, ожидался 200; состояние не изменилось",
+      "bug": "BUG-003",
+      "eventRange": [
+        229,
+        240
+      ]
+    },
+    {
+      "id": "TITLE-16",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название из 100 emoji U+1F600; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Fail",
+      "actual": "POST: HTTP 422, ожидался 201; состояние не изменилось; PUT: HTTP 422, ожидался 200; состояние не изменилось",
+      "bug": "BUG-003",
+      "eventRange": [
+        241,
+        252
+      ]
+    },
+    {
+      "id": "TITLE-17",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название из 101 emoji U+1F600; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        253,
+        264
+      ]
+    },
+    {
+      "id": "TITLE-18",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название только из U+00A0 (неразрывный пробел); отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Fail",
+      "actual": "POST: HTTP 201, ожидался 422; состояние изменилось; PUT: HTTP 200, ожидался 422; состояние изменилось",
+      "bug": "BUG-002",
+      "eventRange": [
+        265,
+        279
+      ]
+    },
+    {
+      "id": "TITLE-19",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название только из U+2003 (EM SPACE); отдельно POST и PUT существующей задачи",
+      "expected": "422; field=title; хранилище не меняется",
+      "status": "Fail",
+      "actual": "POST: HTTP 201, ожидался 422; состояние изменилось; PUT: HTTP 200, ожидался 422; состояние изменилось",
+      "bug": "BUG-002",
+      "eventRange": [
+        280,
+        294
+      ]
+    },
+    {
+      "id": "TITLE-20",
+      "group": "Название",
+      "requirement": "R-06",
+      "priority": "P1",
+      "action": "Название с пробелами вокруг непустого текста; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        295,
+        309
+      ]
+    },
+    {
+      "id": "PRIORITY-01",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "Нижняя граница priority=1; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        310,
+        324
+      ]
+    },
+    {
+      "id": "PRIORITY-02",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "Верхняя граница priority=5; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        325,
+        339
+      ]
+    },
+    {
+      "id": "PRIORITY-03",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "priority=0; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=priority; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        340,
+        351
+      ]
+    },
+    {
+      "id": "PRIORITY-04",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "priority=6; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=priority; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        352,
+        363
+      ]
+    },
+    {
+      "id": "PRIORITY-05",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "Дробный priority=2.5; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=priority; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        364,
+        375
+      ]
+    },
+    {
+      "id": "PRIORITY-06",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "Строка вместо priority; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=priority; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        376,
+        387
+      ]
+    },
+    {
+      "id": "PRIORITY-07",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "Boolean вместо priority; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=priority; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        388,
+        399
+      ]
+    },
+    {
+      "id": "PRIORITY-08",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "priority=null; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=priority; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        400,
+        411
+      ]
+    },
+    {
+      "id": "PRIORITY-09",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "Массив вместо priority; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=priority; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        412,
+        423
+      ]
+    },
+    {
+      "id": "PRIORITY-10",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "Объект вместо priority; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=priority; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        424,
+        435
+      ]
+    },
+    {
+      "id": "PRIORITY-11",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "priority больше int32; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=priority; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        436,
+        447
+      ]
+    },
+    {
+      "id": "PRIORITY-12",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P1",
+      "action": "Отрицательный priority=-1; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=priority; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        448,
+        459
+      ]
+    },
+    {
+      "id": "PRIORITY-13",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P2",
+      "action": "POST и PUT с числом priority=4.0",
+      "expected": "POST 201 / PUT 200; математически целое число принято без изменения значения",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        460,
+        463
+      ]
+    },
+    {
+      "id": "PRIORITY-14",
+      "group": "Приоритет",
+      "requirement": "R-07",
+      "priority": "P2",
+      "action": "POST и PUT с числом priority=1e0",
+      "expected": "POST 201 / PUT 200; математически целое число принято без изменения значения",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        464,
+        467
+      ]
+    },
+    {
+      "id": "BOOL-01",
+      "group": "Выполнение",
+      "requirement": "R-08",
+      "priority": "P1",
+      "action": "completed=true; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        468,
+        488
+      ]
+    },
+    {
+      "id": "BOOL-02",
+      "group": "Выполнение",
+      "requirement": "R-08",
+      "priority": "P1",
+      "action": "completed=false; отдельно POST и PUT существующей задачи",
+      "expected": "POST 201 / PUT 200; значения точно сохранены; GET возвращает те же данные",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        489,
+        503
+      ]
+    },
+    {
+      "id": "BOOL-03",
+      "group": "Выполнение",
+      "requirement": "R-08",
+      "priority": "P1",
+      "action": "completed=\"false\"; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=completed; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        504,
+        515
+      ]
+    },
+    {
+      "id": "BOOL-04",
+      "group": "Выполнение",
+      "requirement": "R-08",
+      "priority": "P1",
+      "action": "completed=1; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=completed; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        516,
+        527
+      ]
+    },
+    {
+      "id": "BOOL-05",
+      "group": "Выполнение",
+      "requirement": "R-08",
+      "priority": "P1",
+      "action": "completed=null; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=completed; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        528,
+        539
+      ]
+    },
+    {
+      "id": "BOOL-06",
+      "group": "Выполнение",
+      "requirement": "R-08",
+      "priority": "P1",
+      "action": "completed=[]; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=completed; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        540,
+        551
+      ]
+    },
+    {
+      "id": "BOOL-07",
+      "group": "Выполнение",
+      "requirement": "R-08",
+      "priority": "P1",
+      "action": "completed={}; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=completed; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        552,
+        563
+      ]
+    },
+    {
+      "id": "JSON-01",
+      "group": "JSON и HTTP",
+      "requirement": "R-10",
+      "priority": "P1",
+      "action": "Передать лишнее поле id=10; отдельно POST и PUT существующей задачи",
+      "expected": "422; field=id; хранилище не меняется",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        564,
+        575
+      ]
+    },
+    {
+      "id": "JSON-02",
+      "group": "JSON и HTTP",
+      "requirement": "R-10",
+      "priority": "P1",
+      "action": "Оборванный JSON; отдельно POST и PUT",
+      "expected": "400; field=body; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        576,
+        587
+      ]
+    },
+    {
+      "id": "JSON-03",
+      "group": "JSON и HTTP",
+      "requirement": "R-10",
+      "priority": "P1",
+      "action": "Отсутствующее тело; отдельно POST и PUT",
+      "expected": "400; field=body; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        588,
+        599
+      ]
+    },
+    {
+      "id": "JSON-04",
+      "group": "JSON и HTTP",
+      "requirement": "R-10",
+      "priority": "P1",
+      "action": "Невалидный UTF-8; отдельно POST и PUT",
+      "expected": "400; field=body; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        600,
+        611
+      ]
+    },
+    {
+      "id": "JSON-05",
+      "group": "JSON и HTTP",
+      "requirement": "R-10",
+      "priority": "P1",
+      "action": "Второй JSON-объект после первого; отдельно POST и PUT",
+      "expected": "400; field=body; данные не меняются",
+      "status": "Fail",
+      "actual": "POST: HTTP 201, ожидался 400; состояние изменилось; PUT: HTTP 200, ожидался 400; состояние изменилось",
+      "bug": "BUG-001",
+      "eventRange": [
+        612,
+        624
+      ]
+    },
+    {
+      "id": "JSON-06",
+      "group": "JSON и HTTP",
+      "requirement": "R-10",
+      "priority": "P1",
+      "action": "Мусор после JSON; отдельно POST и PUT",
+      "expected": "400; field=body; данные не меняются",
+      "status": "Fail",
+      "actual": "POST: HTTP 201, ожидался 400; состояние изменилось; PUT: HTTP 200, ожидался 400; состояние изменилось",
+      "bug": "BUG-001",
+      "eventRange": [
+        625,
+        637
+      ]
+    },
+    {
+      "id": "JSON-07",
+      "group": "JSON и HTTP",
+      "requirement": "R-10",
+      "priority": "P1",
+      "action": "Допустимые пробелы после JSON; отдельно POST и PUT",
+      "expected": "POST 201 / PUT 200; пробелы вне объекта допустимы",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        638,
+        650
+      ]
+    },
+    {
+      "id": "HTTP-02",
+      "group": "JSON и HTTP",
+      "requirement": "A-04",
+      "priority": "P2",
+      "action": "POST с Content-Type: text/plain",
+      "expected": "415; новая задача не появляется (дополнительная HTTP-проверка)",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        651,
+        653
+      ]
+    },
+    {
+      "id": "HTTP-03",
+      "group": "JSON и HTTP",
+      "requirement": "R-10",
+      "priority": "P2",
+      "action": "PATCH для коллекции /tasks",
+      "expected": "405; Allow содержит GET и POST; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        654,
+        656
+      ]
+    },
+    {
+      "id": "HTTP-04",
+      "group": "JSON и HTTP",
+      "requirement": "R-10",
+      "priority": "P2",
+      "action": "PATCH существующей задачи",
+      "expected": "405; Allow содержит DELETE, GET, PUT; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        657,
+        660
+      ]
+    },
+    {
+      "id": "PAGE-01",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks; Параметры отсутствуют: значения по умолчанию; создана 21 задача",
+      "expected": "200; 20 задач в порядке создания",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        685,
+        687
+      ]
+    },
+    {
+      "id": "PAGE-02",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?limit=1; limit=1; создана 21 задача",
+      "expected": "200; 1 задач в порядке создания",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        688,
+        690
+      ]
+    },
+    {
+      "id": "PAGE-03",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?limit=100; limit=100; создана 21 задача",
+      "expected": "200; 21 задач в порядке создания",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        691,
+        693
+      ]
+    },
+    {
+      "id": "PAGE-04",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?limit=0; limit=0; создана 21 задача",
+      "expected": "422; field=limit; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        694,
+        696
+      ]
+    },
+    {
+      "id": "PAGE-05",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?limit=101; limit=101; создана 21 задача",
+      "expected": "422; field=limit; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        697,
+        699
+      ]
+    },
+    {
+      "id": "PAGE-06",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?offset=0; offset=0; создана 21 задача",
+      "expected": "200; 20 задач в порядке создания",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        700,
+        702
+      ]
+    },
+    {
+      "id": "PAGE-07",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?limit=1&offset=1; Смещение на вторую задачу; создана 21 задача",
+      "expected": "200; 1 задач в порядке создания",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        703,
+        705
+      ]
+    },
+    {
+      "id": "PAGE-08",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?offset=21; Смещение равно числу задач; создана 21 задача",
+      "expected": "200; 0 задач в порядке создания",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        706,
+        708
+      ]
+    },
+    {
+      "id": "PAGE-09",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?offset=2147483647; Максимальный offset int32; создана 21 задача",
+      "expected": "200; 0 задач в порядке создания",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        709,
+        711
+      ]
+    },
+    {
+      "id": "PAGE-10",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?offset=-1; offset=-1; создана 21 задача",
+      "expected": "422; field=offset; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        712,
+        714
+      ]
+    },
+    {
+      "id": "PAGE-11",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?limit=abc; Нечисловой limit; создана 21 задача",
+      "expected": "422; field=limit; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        715,
+        717
+      ]
+    },
+    {
+      "id": "PAGE-12",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?offset=abc; Нечисловой offset; создана 21 задача",
+      "expected": "422; field=offset; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        718,
+        720
+      ]
+    },
+    {
+      "id": "PAGE-13",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?limit=2147483648; Переполнение limit int32; создана 21 задача",
+      "expected": "422; field=limit; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        721,
+        723
+      ]
+    },
+    {
+      "id": "PAGE-14",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "GET /tasks?offset=2147483648; Переполнение offset int32; создана 21 задача",
+      "expected": "422; field=offset; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        724,
+        726
+      ]
+    },
+    {
+      "id": "PAGE-15",
+      "group": "Пагинация",
+      "requirement": "R-11",
+      "priority": "P2",
+      "action": "Изменить первую и удалить вторую задачу; получить список",
+      "expected": "Изменённая сохраняет место; удалённая отсутствует; остальные в прежнем порядке",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        727,
+        729
+      ]
+    },
+    {
+      "id": "ID-01",
+      "group": "Идентификатор",
+      "requirement": "R-09",
+      "priority": "P1",
+      "action": "GET, PUT и DELETE /tasks/0",
+      "expected": "422; field=taskId; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        730,
+        736
+      ]
+    },
+    {
+      "id": "ID-02",
+      "group": "Идентификатор",
+      "requirement": "R-09",
+      "priority": "P1",
+      "action": "GET, PUT и DELETE /tasks/-1",
+      "expected": "422; field=taskId; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        737,
+        743
+      ]
+    },
+    {
+      "id": "ID-03",
+      "group": "Идентификатор",
+      "requirement": "R-09",
+      "priority": "P1",
+      "action": "GET, PUT и DELETE /tasks/abc",
+      "expected": "422; field=taskId; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        744,
+        750
+      ]
+    },
+    {
+      "id": "ID-04",
+      "group": "Идентификатор",
+      "requirement": "R-09",
+      "priority": "P1",
+      "action": "GET, PUT и DELETE /tasks/1.5",
+      "expected": "422; field=taskId; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        751,
+        757
+      ]
+    },
+    {
+      "id": "ID-05",
+      "group": "Идентификатор",
+      "requirement": "R-09",
+      "priority": "P1",
+      "action": "GET, PUT и DELETE /tasks/9223372036854775808",
+      "expected": "422; field=taskId; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        758,
+        764
+      ]
+    },
+    {
+      "id": "ID-06",
+      "group": "Идентификатор",
+      "requirement": "R-09",
+      "priority": "P1",
+      "action": "GET, PUT и DELETE /tasks/9223372036854775807",
+      "expected": "404; detail=Task not found; данные не меняются",
+      "status": "Pass",
+      "actual": "Соответствует ожидаемому результату",
+      "bug": "",
+      "eventRange": [
+        765,
+        771
+      ]
+    },
+    {
+      "id": "STORE-01",
+      "group": "Хранение",
+      "requirement": "R-12",
+      "priority": "P2",
+      "action": "Создать маркер; остановить и запустить тот же JAR; получить список и прежний id",
+      "expected": "После запуска 200 []; прежний id возвращает 404: данные хранятся только в памяти",
+      "status": "Pass",
+      "evidence": "lifecycle.json"
+    },
+    {
+      "id": "EXT-01",
+      "group": "Дополнительное покрытие",
+      "requirement": "A-01",
+      "priority": "P2",
+      "action": "Повторить основной UI-сценарий в независимых Chrome и Firefox",
+      "expected": "Создание, чтение, изменение и удаление доступны в обоих браузерах",
+      "status": "Not run",
+      "actual": "В прогоне использован только встроенный браузер; независимые браузеры не были доступны"
+    },
+    {
+      "id": "EXT-02",
+      "group": "Дополнительное покрытие",
+      "requirement": "A-02",
+      "priority": "P2",
+      "action": "Проверить формы и ответы при ширине экрана 360 CSS px",
+      "expected": "Поля и кнопки доступны; результат запроса читается; элементы не перекрываются",
+      "status": "Not run",
+      "actual": "Прогон выполнен при viewport 1280×720; мобильная компоновка не проверена"
+    },
+    {
+      "id": "EXT-03",
+      "group": "Дополнительное покрытие",
+      "requirement": "A-03",
+      "priority": "P2",
+      "action": "Пройти сценарий POST только клавиатурой: Tab, Shift+Tab, Enter",
+      "expected": "Фокус виден; все поля и Execute доступны; отсутствует ловушка фокуса",
+      "status": "Not run",
+      "actual": "Клавиатурный сценарий и проверка средствами экранного диктора не выполнялись"
+    }
+  ]
+}

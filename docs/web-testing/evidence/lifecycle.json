@@ -1,0 +1,43 @@
+{
+  "sourceCommit": "5c663ea7eadbbd830f438680f556f13639cfaecc",
+  "beforeRestart": {
+    "at": "2026-10-17T19:28:31.918Z",
+    "createStatus": 201,
+    "created": {
+      "id": 176,
+      "title": "Маркер перезапуска",
+      "priority": 3,
+      "completed": false
+    },
+    "list": [
+      {
+        "id": 174,
+        "title": "Первый объект",
+        "priority": 3,
+        "completed": false
+      },
+      {
+        "id": 175,
+        "title": " ",
+        "priority": 3,
+        "completed": false
+      },
+      {
+        "id": 176,
+        "title": "Маркер перезапуска",
+        "priority": 3,
+        "completed": false
+      }
+    ]
+  },
+  "afterRestart": {
+    "at": "2026-10-17T19:28:48.848Z",
+    "listStatus": 200,
+    "list": [],
+    "previousIdStatus": 404,
+    "previousIdBody": {
+      "detail": "Task not found"
+    }
+  },
+  "status": "Pass"
+}

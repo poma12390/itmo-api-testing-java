@@ -1,0 +1,273 @@
+Browser tab: 2, Title: "Swagger UI", URL: "http://127.0.0.1:18080/swagger-ui/index.html#/task-controller/create".
+0 AXWebArea Swagger UI, URL: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/create
+	1 container
+		2 link Description: Skip to operations, Value: 127.0.0.1:18080/swagger-ui/index.html#operations
+		3 image
+		4 container
+			5 text field (settable) Value: /openapi.json, ID: download-url-input
+			6 button Explore
+		7 checkbox Description: Switch to light mode, Value: 1
+		8 image
+		9 container
+			10 heading Tasks API 1.0.0 OAS 3.1, Value: 1
+				11 text Tasks API
+				12 container
+					13 text 1.0.0
+				14 container
+					15 text OAS  3.1
+			16 link Description: /openapi.json, Value: 127.0.0.1:18080/openapi.json
+		17 text Servers
+		18 pop up button (collapsed, settable) Value: /, ID: servers, Secondary Actions: Expand
+			19 menu
+				20 (selected) /
+		21 container operations
+			22 container
+				23 heading task-controller Collapse operation, Value: 3, ID: operations-tag-task-controller
+					24 link Description: task-controller, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller
+					25 button (expanded) Description: Collapse operation, Secondary Actions: Collapse
+				26 container operations-task-controller-find
+					27 button (collapsed) GET /tasks /{taskId} Get a task, Secondary Actions: Expand
+						28 text GET
+						29 link Description: /tasks /{taskId}, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/find
+						30 text Get a task
+					31 container Copy path to clipboard
+						32 button Copy path to clipboard
+					33 button (collapsed) Description: get ​/tasks​/{taskId}, Secondary Actions: Expand
+				34 container operations-task-controller-replace
+					35 button (collapsed) PUT /tasks /{taskId} Replace a task, Secondary Actions: Expand
+						36 text PUT
+						37 link Description: /tasks /{taskId}, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/replace
+						38 text Replace a task
+					39 container Copy path to clipboard
+						40 button Copy path to clipboard
+					41 button (collapsed) Description: put ​/tasks​/{taskId}, Secondary Actions: Expand
+				42 container operations-task-controller-delete
+					43 button (collapsed) DELETE /tasks /{taskId} Delete a task, Secondary Actions: Expand
+						44 text DELETE
+						45 link Description: /tasks /{taskId}, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/delete
+						46 text Delete a task
+					47 container Copy path to clipboard
+						48 button Copy path to clipboard
+					49 button (collapsed) Description: delete ​/tasks​/{taskId}, Secondary Actions: Expand
+				50 container operations-task-controller-list
+					51 button (collapsed) GET /tasks List tasks, Secondary Actions: Expand
+						52 text GET
+						53 link Description: /tasks, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/list
+						54 text List tasks
+					55 container Copy path to clipboard
+						56 button Copy path to clipboard
+					57 button (collapsed) Description: get ​/tasks, Secondary Actions: Expand
+				58 container operations-task-controller-create
+					59 button (expanded) POST /tasks Create a task, Secondary Actions: Collapse
+						60 text POST
+						61 link Description: /tasks, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/create
+						62 text Create a task
+					63 container Copy path to clipboard
+						64 button Copy path to clipboard
+					65 button (expanded) Description: post ​/tasks, Secondary Actions: Collapse
+					103 heading Parameters, Value: 4
+						104 text Parameters
+					105 button Cancel
+					106 button Reset
+					107 text No parameters
+					108 heading Request bodyrequired, Value: 4
+						109 text Request body required
+					110 pop up button (collapsed, settable) Description: Request content type, Value: application/json, ID: post_tasks_requests_select, Secondary Actions: Expand
+						111 menu
+							112 (selected) application/json
+					113 tab group
+						114 tab (selected, settable, boolean) Edit Value, Value: 1, ID: oIvaahA=
+						115 tab (selectable, settable, boolean) Schema, Value: 0, ID: K5fEqqc=
+					116 container Description: Edit Value, ID: ODXDa8A=
+						117 text entry area (settable) {}
+					118 button Execute
+					119 button Clear
+					120 heading Responses, Value: 4
+						121 text Responses
+					122 container
+						123 heading Curl, Value: 4
+							124 text Curl
+						125 container Copy cURL command to clipboard
+							126 button Copy cURL command to clipboard
+						127 container
+							128 text curl -X  'POST'  \
+ 'http://127.0.0.1:18080/tasks'  \
+   -H  'accept: application/json'  \
+   -H  'Content-Type: application/json'  \
+   -d  '{}'
+					129 heading Request URL, Value: 4
+						130 text Request URL
+					131 text http://127.0.0.1:18080/tasks
+					132 heading Server response, Value: 4
+						133 text Server response
+					134 table
+						135 row
+							136 cell
+								137 text Code
+							138 cell
+								139 text Details
+						140 row
+							141 cell
+								142 text 422
+							143 cell
+								144 text Error: response status is 422
+								145 heading Response body, Value: 5
+									146 text Response body
+								147 container
+									148 container Copy code to clipboard
+										149 button Copy code to clipboard
+									150 button Download
+									151 container
+										152 text {
+ "detail" :  "Validation failed" ,
+ "field" :  "title" }
+								153 heading Response headers, Value: 5
+									154 text Response headers
+								155 text connection :  keep-alive content-type :  application/json date :  Sat,17 Oct 2026 19:27:34 GMT keep-alive :  timeout=60 transfer-encoding :  chunked
+					156 heading Responses, Value: 4
+						157 text Responses
+					158 table post_tasks_responses
+						159 row
+							160 cell
+								161 text Code
+							162 cell
+								163 text Description
+							164 cell
+								165 text Links
+						166 row
+							167 cell
+								168 text 201
+							169 cell
+								170 text Task created
+								171 container
+									172 text Media type
+									173 pop up button (collapsed, settable) Description: Media Type, Value: application/json, Secondary Actions: Expand
+										174 menu
+											175 (selected) application/json
+									176 text Controls  Accept  header.
+								177 tab group
+									178 tab (selected, settable, boolean) Example Value, Value: 1, ID: uMsZZh4=
+									179 tab (selectable, settable, boolean) Schema, Value: 0, ID: 2HB714U=
+								180 container Description: Example Value, ID: wwI/4oc=
+									181 container
+										182 text {
+ "id" :  1 ,
+ "title" :  "string" ,
+ "priority" :  1 ,
+ "completed" :  true }
+								183 heading Headers:, Value: 4
+									184 text Headers:
+								185 table
+									186 row
+										187 cell
+											188 text Name
+										189 cell
+											190 text Description
+										191 cell
+											192 text Type
+									193 row
+										194 cell
+											195 text Location
+										196 cell
+											197 text string
+							198 cell
+								199 text No links
+						200 row
+							201 cell
+								202 text 400
+							203 cell
+								204 text Malformed JSON
+								205 container
+									206 text Media type
+									207 pop up button (collapsed, settable) Description: Media Type, Value: application/json, Secondary Actions: Expand
+										208 menu
+											209 (selected) application/json
+								210 tab group
+									211 tab (selected, settable, boolean) Example Value, Value: 1, ID: IKwpuiQ=
+									212 tab (selectable, settable, boolean) Schema, Value: 0, ID: VpfNmvQ=
+								213 container Description: Example Value, ID: RorDezw=
+									214 container
+										215 text {
+ "detail" :  "string" ,
+ "field" :  "string" }
+							216 cell
+								217 text No links
+						218 row
+							219 cell
+								220 text 405
+							221 cell
+								222 text Method not allowed
+								223 container
+									224 text Media type
+									225 pop up button (collapsed, settable) Description: Media Type, Value: application/json, Secondary Actions: Expand
+										226 menu
+											227 (selected) application/json
+								228 tab group
+									229 tab (selected, settable, boolean) Example Value, Value: 1, ID: SbqL8GE=
+									230 tab (selectable, settable, boolean) Schema, Value: 0, ID: UQHkVuM=
+								231 container Description: Example Value, ID: EALBJmo=
+									232 container
+										233 text {
+ "detail" :  "string" ,
+ "field" :  "string" }
+							234 cell
+								235 text No links
+						236 row
+							237 cell
+								238 text 422
+							239 cell
+								240 text Validation error
+								241 container
+									242 text Media type
+									243 pop up button (collapsed, settable) Description: Media Type, Value: application/json, Secondary Actions: Expand
+										244 menu
+											245 (selected) application/json
+								246 tab group
+									247 tab (selected, settable, boolean) Example Value, Value: 1, ID: vPxKWzA=
+									248 tab (selectable, settable, boolean) Schema, Value: 0, ID: Dvjkk6k=
+								249 container Description: Example Value, ID: WJqYDdE=
+									250 container
+										251 text {
+ "detail" :  "string" ,
+ "field" :  "string" }
+							252 cell
+								253 text No links
+			66 container
+				67 heading Schemas, Value: 4
+					68 button (expanded) Schemas, Secondary Actions: Collapse
+				69 container
+					70 button TaskRequest
+						71 text TaskRequest
+					72 button Collapse all
+					73 text object
+				84 content list
+					85 container
+						86 button title*
+							87 container
+								88 text title *
+						89 button Expand all
+						90 text string [1, 100] characters matches \S
+					91 container
+						92 button priority
+							93 text priority
+						94 button Expand all
+						95 text integer [1, 5] int32
+					96 container
+						97 button completed
+							98 text completed
+						99 button Expand all
+						100 text boolean
+				101 container
+					102 text Additional properties forbidden
+				74 container
+					75 button Task
+						76 text Task
+					77 button Expand all
+					78 text object
+				79 container
+					80 button ApiError
+						81 text ApiError
+					82 button Expand all
+					83 text object
+
+The focused UI element is 0 AXWebArea Swagger UI, URL: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/create

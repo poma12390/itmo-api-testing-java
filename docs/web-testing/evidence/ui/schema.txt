@@ -1,0 +1,106 @@
+Browser tab: 2, Title: "Swagger UI", URL: "http://127.0.0.1:18080/swagger-ui/index.html#/".
+0 AXWebArea Swagger UI, URL: 127.0.0.1:18080/swagger-ui/index.html#/
+	1 container
+		2 link Description: Skip to operations, Value: 127.0.0.1:18080/swagger-ui/index.html#operations
+		3 image
+		4 container
+			5 text field (settable) Value: /openapi.json, ID: download-url-input
+			6 button Explore
+		7 checkbox Description: Switch to light mode, Value: 1
+		8 image
+		9 container
+			10 heading Tasks API 1.0.0 OAS 3.1, Value: 1
+				11 text Tasks API
+				12 container
+					13 text 1.0.0
+				14 container
+					15 text OAS  3.1
+			16 link Description: /openapi.json, Value: 127.0.0.1:18080/openapi.json
+		17 text Servers
+		18 pop up button (collapsed, settable) Value: /, ID: servers, Secondary Actions: Expand
+			19 menu
+				20 (selected) /
+		21 container operations
+			22 container
+				23 heading task-controller Collapse operation, Value: 3, ID: operations-tag-task-controller
+					24 link Description: task-controller, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller
+					25 button (expanded) Description: Collapse operation, Secondary Actions: Collapse
+				26 container operations-task-controller-find
+					27 button (collapsed) GET /tasks /{taskId} Get a task, Secondary Actions: Expand
+						28 text GET
+						29 link Description: /tasks /{taskId}, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/find
+						30 text Get a task
+					31 container Copy path to clipboard
+						32 button Copy path to clipboard
+					33 button (collapsed) Description: get ​/tasks​/{taskId}, Secondary Actions: Expand
+				34 container operations-task-controller-replace
+					35 button (collapsed) PUT /tasks /{taskId} Replace a task, Secondary Actions: Expand
+						36 text PUT
+						37 link Description: /tasks /{taskId}, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/replace
+						38 text Replace a task
+					39 container Copy path to clipboard
+						40 button Copy path to clipboard
+					41 button (collapsed) Description: put ​/tasks​/{taskId}, Secondary Actions: Expand
+				42 container operations-task-controller-delete
+					43 button (collapsed) DELETE /tasks /{taskId} Delete a task, Secondary Actions: Expand
+						44 text DELETE
+						45 link Description: /tasks /{taskId}, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/delete
+						46 text Delete a task
+					47 container Copy path to clipboard
+						48 button Copy path to clipboard
+					49 button (collapsed) Description: delete ​/tasks​/{taskId}, Secondary Actions: Expand
+				50 container operations-task-controller-list
+					51 button (collapsed) GET /tasks List tasks, Secondary Actions: Expand
+						52 text GET
+						53 link Description: /tasks, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/list
+						54 text List tasks
+					55 container Copy path to clipboard
+						56 button Copy path to clipboard
+					57 button (collapsed) Description: get ​/tasks, Secondary Actions: Expand
+				58 container operations-task-controller-create
+					59 button (collapsed) POST /tasks Create a task, Secondary Actions: Expand
+						60 text POST
+						61 link Description: /tasks, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/create
+						62 text Create a task
+					63 container Copy path to clipboard
+						64 button Copy path to clipboard
+					65 button (collapsed) Description: post ​/tasks, Secondary Actions: Expand
+			66 container
+				67 heading Schemas, Value: 4
+					68 button (expanded) Schemas, Secondary Actions: Collapse
+				69 container
+					70 button TaskRequest
+						71 text TaskRequest
+					72 button Collapse all
+					73 text object
+				84 content list
+					85 container
+						86 button title*
+							87 container
+								88 text title *
+						89 button Expand all
+						90 text string [1, 100] characters matches \S
+					91 container
+						92 button priority
+							93 text priority
+						94 button Expand all
+						95 text integer [1, 5] int32
+					96 container
+						97 button completed
+							98 text completed
+						99 button Expand all
+						100 text boolean
+				101 container
+					102 text Additional properties forbidden
+				74 container
+					75 button Task
+						76 text Task
+					77 button Expand all
+					78 text object
+				79 container
+					80 button ApiError
+						81 text ApiError
+					82 button Expand all
+					83 text object
+
+The focused UI element is 70 button TaskRequest

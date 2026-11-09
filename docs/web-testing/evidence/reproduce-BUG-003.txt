@@ -1,0 +1,53 @@
+
+BUG-003. Тело запроса:
+{"title":"😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"}
+
+Исходный список:
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 17 Oct 2026 19:33:22 GMT
+
+[{"id":1,"title":"Первый объект","priority":3,"completed":false},{"id":2,"title":"Первый объект","priority":3,"completed":false},{"id":3,"title":" ","priority":3,"completed":false},{"id":4,"title":" ","priority":3,"completed":false}]
+
+POST: ожидается HTTP 201. Фактический ответ:
+HTTP/1.1 422
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 17 Oct 2026 19:33:22 GMT
+
+{"detail":"Validation failed","field":"title"}
+
+Исходная задача для PUT (/tasks/5):
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 17 Oct 2026 19:33:22 GMT
+
+{"id":5,"title":"Исходная задача","priority":2,"completed":true}
+
+PUT: ожидается HTTP 200. Фактический ответ:
+HTTP/1.1 422
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 17 Oct 2026 19:33:22 GMT
+
+{"detail":"Validation failed","field":"title"}
+
+Та же задача после PUT:
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 17 Oct 2026 19:33:22 GMT
+
+{"id":5,"title":"Исходная задача","priority":2,"completed":true}
+
+Список после проверки:
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 17 Oct 2026 19:33:22 GMT
+
+[{"id":1,"title":"Первый объект","priority":3,"completed":false},{"id":2,"title":"Первый объект","priority":3,"completed":false},{"id":3,"title":" ","priority":3,"completed":false},{"id":4,"title":" ","priority":3,"completed":false},{"id":5,"title":"Исходная задача","priority":2,"completed":true}]
+
+Сравните статусы и состояние с баг-репортом. Код 0 означает завершение запросов, а не отсутствие дефекта.
