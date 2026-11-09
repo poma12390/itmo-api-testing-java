@@ -1,0 +1,11 @@
+Дата прогона: 10.11.2026, Europe/Moscow
+Машина: Mac15,7, Apple Silicon arm64, 12 CPU, 36 ГиБ RAM
+ОС: macOS 26.7.1 (25G241)
+JVM: OpenJDK 25.0.2+10-69, Spring Boot 3.5.16, Tomcat 10.1.55
+Параметры каждой JVM: -Xms128m -Xmx512m -XX:ActiveProcessorCount=4
+wrk2: macOS kqueue, chunjin666/wrk2 60a9a116103ffe999ea8d48421d024364b1ce3fb
+LuaJIT: openresty/luajit2 ea25ac160c5d96b17d8ccb64451c013c24cc81b7
+async-profiler: 4.6 macOS, CPU + alloc (64 КиБ) + lock (1 мкс)
+Топология: 1 координатор и 3 реплики, loopback, HTTP/2 между JVM
+wrk2: 4 потока, 64 соединения, 25 секунд, 128 ключей, значение 256 байт
+Задержка в сценарии slow: 25 мс на направлении координатор → первая реплика
