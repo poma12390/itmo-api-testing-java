@@ -8,13 +8,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import ru.itmo.ui.UiResponse;
 
 @Tag("ui")
 @DisplayName("Задачи через Swagger UI")
+@Timeout(value = 45, threadMode = Timeout.ThreadMode.SAME_THREAD)
 class TaskUiIT extends UiTestSupport {
     private final ObjectMapper json = new ObjectMapper();
 
@@ -96,18 +99,31 @@ class TaskUiIT extends UiTestSupport {
         assertEquals(expected, created.json());
 
         UiResponse invalidTitle = ui.createTask(" \t\n");
-        assertEquals(422, invalidTitle.status());
-        assertEquals("title", invalidTitle.json().path("field").asText());
+        assertValidationError(invalidTitle, "title");
         assertListContainsExactly(expected);
 
         UiResponse invalidPriority = ui.replaceTask(id, "Не должно сохраниться", 6, false);
-        assertEquals(422, invalidPriority.status());
-        assertEquals("priority", invalidPriority.json().path("field").asText());
+        assertValidationError(invalidPriority, "priority");
 
         UiResponse fetched = ui.readTask(id);
         assertEquals(200, fetched.status());
         assertEquals(expected, fetched.json());
         assertListContainsExactly(expected);
+    }
+
+    @Test
+    @DisplayName("Название из неразрывного пробела отклоняется")
+    @Disabled("BUG-002: POST сохраняет название из U+00A0, см. docs/web-testing/bugs/BUG-002.md")
+    void rejectsNonBreakingSpaceTitle() {
+        UiResponse response = ui.createTask("\u00a0");
+        assertValidationError(response, "title");
+        assertListContainsExactly();
+    }
+
+    private void assertValidationError(UiResponse response, String field) {
+        assertAll("Ошибка в Server response",
+                () -> assertEquals(422, response.status(), response.body()),
+                () -> assertEquals(field, response.json().path("field").asText()));
     }
 
     private long taskId(UiResponse created) {

@@ -8,6 +8,7 @@
 | API-тесты | JUnit 5, REST Assured, OpenAPI; 95 тестов |
 | [Чек-лист и баг-репорты](docs/web-testing/README.md) | 102 проверки, найдено 3 дефекта |
 | [UI-тесты](docs/ui-testing/README.md) | Playwright, JUnit 5, Page Object; 5 тестов |
+| [ДЗ №5](#дз-5-junit) | Пагинация в Swagger UI и аннотации JUnit 5 |
 
 ## Запуск
 
@@ -37,6 +38,23 @@ PLAYWRIGHT_BROWSERS_PATH="$PWD/.tools/ms-playwright" \
 
 Swagger UI: `http://localhost:8080/swagger-ui/index.html`.
 Спецификация: `http://localhost:8080/openapi.json`.
+
+## ДЗ 5: JUnit
+
+В Swagger UI проверяю пустой список, порядок задач на страницах и ошибки в `limit` и `offset`.
+Наборы данных задаю через `@ParameterizedTest`, сценарии с созданными задачами группирую через `@Nested`.
+`@BeforeEach` готовит данные и контекст браузера, `@AfterEach` закрывает контекст.
+У UI-тестов есть `@Timeout`, а `assertAll` показывает сразу все расхождения в ответе с ошибкой.
+`@TestFactory` генерирует API-тесты по OpenAPI. Тест на [BUG-002](docs/web-testing/bugs/BUG-002.md)
+помечен `@Disabled` до исправления.
+
+Выбор UI-тестов по классу, пакету и тегу:
+
+```bash
+./mvnw -Pui verify -Dit.test=TaskListUiIT
+./mvnw -Pui verify '-Dit.test=ru/itmo/api/*IT'
+./mvnw -Pui test-compile failsafe:integration-test failsafe:verify -Dgroups=pagination
+```
 
 ## API
 
@@ -78,5 +96,6 @@ Springdoc формирует OpenAPI из кода; копия лежит в `op
 На JDK 25 прошли все 95 API-тестов. Покрытие строк кода — 95,1% при пороге 85%.
 HTML-отчёт: `target/site/jacoco/index.html`.
 
-На JDK 25 также прошли 5 UI-тестов: всего 100 из 100. GitHub Actions запускает
-`./mvnw -Pui verify` на JDK 21 и 25. В артефактах — отчёты, скриншоты и трассировки.
+После ДЗ №5 на JDK 25 прошли 95 API- и 13 UI-тестов. Один UI-тест пропущен из-за
+BUG-002. GitHub Actions запускает `./mvnw -Pui verify` на JDK 21 и 25.
+В артефактах — отчёты, скриншоты и трассировки.
