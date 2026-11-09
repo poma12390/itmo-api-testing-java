@@ -7,6 +7,7 @@
 | --- | --- |
 | API-тесты | JUnit 5, REST Assured, OpenAPI; 95 тестов |
 | [Чек-лист и баг-репорты](docs/web-testing/README.md) | 102 проверки, найдено 3 дефекта |
+| [UI-тесты](docs/ui-testing/README.md) | Playwright, JUnit 5, Page Object; 5 тестов |
 
 ## Запуск
 
@@ -17,6 +18,16 @@
 ```
 
 На Windows — `mvnw.cmd verify`. Тесты сами запускают сервер на свободном порту.
+
+Для UI-тестов сначала установить Chromium:
+
+```bash
+PLAYWRIGHT_BROWSERS_PATH="$PWD/.tools/ms-playwright" \
+  ./mvnw exec:java -Dexec.args="install chromium"
+./mvnw -Pui verify
+```
+
+Дальше достаточно `./mvnw -Pui verify`: команда запускает API- и UI-тесты.
 
 Для ручной проверки:
 
@@ -67,5 +78,5 @@ Springdoc формирует OpenAPI из кода; копия лежит в `op
 На JDK 25 прошли все 95 API-тестов. Покрытие строк кода — 95,1% при пороге 85%.
 HTML-отчёт: `target/site/jacoco/index.html`.
 
-GitHub Actions запускает `./mvnw verify` на JDK 21 и 25. Отчёты JUnit и JaCoCo
-сохраняются в артефактах.
+На JDK 25 также прошли 5 UI-тестов: всего 100 из 100. GitHub Actions запускает
+`./mvnw -Pui verify` на JDK 21 и 25. В артефактах — отчёты, скриншоты и трассировки.

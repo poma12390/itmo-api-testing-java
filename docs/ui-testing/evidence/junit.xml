@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites tests="100" failures="0" errors="0" skipped="0">
+  <testsuite version="3.0.2" name="ru.itmo.api.OpenApiGeneratedTest" time="1.08" tests="21" errors="0" skipped="0" failures="0" flakes="0">
+    <testcase name="operationsFromSpecification()[1]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.329" />
+    <testcase name="operationsFromSpecification()[2]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.025" />
+    <testcase name="operationsFromSpecification()[3]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.256" />
+    <testcase name="operationsFromSpecification()[4]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.027" />
+    <testcase name="operationsFromSpecification()[5]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.032" />
+    <testcase name="operationsFromSpecification()[6]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.027" />
+    <testcase name="operationsFromSpecification()[7]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.044" />
+    <testcase name="operationsFromSpecification()[8]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.029" />
+    <testcase name="operationsFromSpecification()[9]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.028" />
+    <testcase name="operationsFromSpecification()[10]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.026" />
+    <testcase name="operationsFromSpecification()[11]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.015" />
+    <testcase name="operationsFromSpecification()[12]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.019" />
+    <testcase name="operationsFromSpecification()[13]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.016" />
+    <testcase name="operationsFromSpecification()[14]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.027" />
+    <testcase name="operationsFromSpecification()[15]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.025" />
+    <testcase name="operationsFromSpecification()[16]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.022" />
+    <testcase name="operationsFromSpecification()[17]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.021" />
+    <testcase name="operationsFromSpecification()[18]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.024" />
+    <testcase name="operationsFromSpecification()[19]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.023" />
+    <testcase name="operationsFromSpecification()[20]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.022" />
+    <testcase name="operationsFromSpecification()[21]" classname="ru.itmo.api.OpenApiGeneratedTest" time="0.022" />
+  </testsuite>
+  <testsuite version="3.0.2" name="ru.itmo.api.OpenApiSnapshotTest" time="2.59" tests="1" errors="0" skipped="0" failures="0" flakes="0">
+    <testcase name="specificationMatchesApplication" classname="ru.itmo.api.OpenApiSnapshotTest" time="0.726" />
+  </testsuite>
+  <testsuite version="3.0.2" name="ru.itmo.api.TaskApiTest" time="1.384" tests="73" errors="0" skipped="0" failures="0" flakes="0">
+    <testcase name="putResetsOmittedFieldsToDefaults" classname="ru.itmo.api.TaskApiTest" time="0.032" />
+    <testcase name="unsupportedMethodReturnsAllowedMethods(String, String)[1]" classname="ru.itmo.api.TaskApiTest" time="0.027" />
+    <testcase name="unsupportedMethodReturnsAllowedMethods(String, String)[2]" classname="ru.itmo.api.TaskApiTest" time="0.028" />
+    <testcase name="appliesDefaultValues" classname="ru.itmo.api.TaskApiTest" time="0.016" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[1]" classname="ru.itmo.api.TaskApiTest" time="0.011" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[2]" classname="ru.itmo.api.TaskApiTest" time="0.01" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[3]" classname="ru.itmo.api.TaskApiTest" time="0.011" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[4]" classname="ru.itmo.api.TaskApiTest" time="0.017" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[5]" classname="ru.itmo.api.TaskApiTest" time="0.012" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[6]" classname="ru.itmo.api.TaskApiTest" time="0.01" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[7]" classname="ru.itmo.api.TaskApiTest" time="0.011" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[8]" classname="ru.itmo.api.TaskApiTest" time="0.01" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[9]" classname="ru.itmo.api.TaskApiTest" time="0.01" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[10]" classname="ru.itmo.api.TaskApiTest" time="0.009" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[11]" classname="ru.itmo.api.TaskApiTest" time="0.009" />
+    <testcase name="rejectsInvalidPathParameter(String, String)[12]" classname="ru.itmo.api.TaskApiTest" time="0.01" />
+    <testcase name="paginatesInCreationOrder" classname="ru.itmo.api.TaskApiTest" time="0.065" />
+    <testcase name="rejectsMissingBody(String)[1]" classname="ru.itmo.api.TaskApiTest" time="0.019" />
+    <testcase name="rejectsMissingBody(String)[2]" classname="ru.itmo.api.TaskApiTest" time="0.019" />
+    <testcase name="rejectsInvalidPagination(String, String)[1]" classname="ru.itmo.api.TaskApiTest" time="0.009" />
+    <testcase name="rejectsInvalidPagination(String, String)[2]" classname="ru.itmo.api.TaskApiTest" time="0.009" />
+    <testcase name="rejectsInvalidPagination(String, String)[3]" classname="ru.itmo.api.TaskApiTest" time="0.01" />
+    <testcase name="rejectsInvalidPagination(String, String)[4]" classname="ru.itmo.api.TaskApiTest" time="0.011" />
+    <testcase name="rejectsInvalidPagination(String, String)[5]" classname="ru.itmo.api.TaskApiTest" time="0.009" />
+    <testcase name="rejectsInvalidPagination(String, String)[6]" classname="ru.itmo.api.TaskApiTest" time="0.01" />
+    <testcase name="createsAndReadsTask" classname="ru.itmo.api.TaskApiTest" time="0.031" />
+    <testcase name="initiallyReturnsEmptyList" classname="ru.itmo.api.TaskApiTest" time="0.005" />
+    <testcase name="largeOffsetReturnsEmptyList" classname="ru.itmo.api.TaskApiTest" time="0.012" />
+    <testcase name="acceptsPaginationBoundaries(int)[1]" classname="ru.itmo.api.TaskApiTest" time="0.012" />
+    <testcase name="acceptsPaginationBoundaries(int)[2]" classname="ru.itmo.api.TaskApiTest" time="0.015" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[1]" classname="ru.itmo.api.TaskApiTest" time="0.026" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[2]" classname="ru.itmo.api.TaskApiTest" time="0.02" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[3]" classname="ru.itmo.api.TaskApiTest" time="0.019" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[4]" classname="ru.itmo.api.TaskApiTest" time="0.02" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[5]" classname="ru.itmo.api.TaskApiTest" time="0.02" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[6]" classname="ru.itmo.api.TaskApiTest" time="0.019" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[7]" classname="ru.itmo.api.TaskApiTest" time="0.019" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[8]" classname="ru.itmo.api.TaskApiTest" time="0.026" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[9]" classname="ru.itmo.api.TaskApiTest" time="0.038" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[10]" classname="ru.itmo.api.TaskApiTest" time="0.023" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[11]" classname="ru.itmo.api.TaskApiTest" time="0.021" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[12]" classname="ru.itmo.api.TaskApiTest" time="0.019" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[13]" classname="ru.itmo.api.TaskApiTest" time="0.019" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[14]" classname="ru.itmo.api.TaskApiTest" time="0.017" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[15]" classname="ru.itmo.api.TaskApiTest" time="0.016" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[16]" classname="ru.itmo.api.TaskApiTest" time="0.016" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[17]" classname="ru.itmo.api.TaskApiTest" time="0.016" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[18]" classname="ru.itmo.api.TaskApiTest" time="0.019" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[19]" classname="ru.itmo.api.TaskApiTest" time="0.019" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[20]" classname="ru.itmo.api.TaskApiTest" time="0.018" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[21]" classname="ru.itmo.api.TaskApiTest" time="0.033" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[22]" classname="ru.itmo.api.TaskApiTest" time="0.024" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[23]" classname="ru.itmo.api.TaskApiTest" time="0.025" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[24]" classname="ru.itmo.api.TaskApiTest" time="0.019" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[25]" classname="ru.itmo.api.TaskApiTest" time="0.018" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[26]" classname="ru.itmo.api.TaskApiTest" time="0.018" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[27]" classname="ru.itmo.api.TaskApiTest" time="0.021" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[28]" classname="ru.itmo.api.TaskApiTest" time="0.018" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[29]" classname="ru.itmo.api.TaskApiTest" time="0.016" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[30]" classname="ru.itmo.api.TaskApiTest" time="0.016" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[31]" classname="ru.itmo.api.TaskApiTest" time="0.018" />
+    <testcase name="rejectsInvalidBodyWithoutChangingState(String, String, String)[32]" classname="ru.itmo.api.TaskApiTest" time="0.017" />
+    <testcase name="missingTaskReturns404(String)[1]" classname="ru.itmo.api.TaskApiTest" time="0.012" />
+    <testcase name="missingTaskReturns404(String)[2]" classname="ru.itmo.api.TaskApiTest" time="0.013" />
+    <testcase name="missingTaskReturns404(String)[3]" classname="ru.itmo.api.TaskApiTest" time="0.011" />
+    <testcase name="rejectsInvalidUtf8(String)[1]" classname="ru.itmo.api.TaskApiTest" time="0.017" />
+    <testcase name="rejectsInvalidUtf8(String)[2]" classname="ru.itmo.api.TaskApiTest" time="0.016" />
+    <testcase name="deletesTaskAndReturnsEmptyBody" classname="ru.itmo.api.TaskApiTest" time="0.025" />
+    <testcase name="replacesTaskAndPersistsChanges" classname="ru.itmo.api.TaskApiTest" time="0.028" />
+    <testcase name="acceptsIntegerValuedJsonNumbers(String)[1]" classname="ru.itmo.api.TaskApiTest" time="0.013" />
+    <testcase name="acceptsIntegerValuedJsonNumbers(String)[2]" classname="ru.itmo.api.TaskApiTest" time="0.012" />
+    <testcase name="rejectsMalformedJson(String)[1]" classname="ru.itmo.api.TaskApiTest" time="0.016" />
+    <testcase name="rejectsMalformedJson(String)[2]" classname="ru.itmo.api.TaskApiTest" time="0.017" />
+  </testsuite>
+  <testsuite version="3.0.2" name="ru.itmo.api.TaskUiIT" time="18.834" tests="5" errors="0" skipped="0" failures="0" flakes="0">
+    <testcase name="createsAndReadsTaskAfterReload" classname="Задачи через Swagger UI" time="3.06" />
+    <testcase name="rejectsInvalidInputWithoutChangingStoredTask" classname="Задачи через Swagger UI" time="4.308" />
+    <testcase name="appliesDefaultsToTaskWithMaximumTitleLength" classname="Задачи через Swagger UI" time="1.33" />
+    <testcase name="deletesTaskAndShowsNotFound" classname="Задачи через Swagger UI" time="3.742" />
+    <testcase name="replacesTaskAndPersistsChanges" classname="Задачи через Swagger UI" time="2.886" />
+  </testsuite>
+</testsuites>
