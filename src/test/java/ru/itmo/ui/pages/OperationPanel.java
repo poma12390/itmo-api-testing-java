@@ -29,7 +29,11 @@ final class OperationPanel {
     }
 
     OperationPanel taskId(long id) {
-        panel.locator("tr[data-param-name='taskId'] input").fill(Long.toString(id));
+        return parameter("taskId", Long.toString(id));
+    }
+
+    OperationPanel parameter(String name, String value) {
+        parameterInput(name).fill(value);
         return this;
     }
 
@@ -39,14 +43,8 @@ final class OperationPanel {
     }
 
     UiResponse execute() {
-        Locator response = panel.locator(".live-responses-table");
-        Locator clear = button("Clear");
-        if (clear.isVisible()) {
-            clear.click();
-        }
-        // Старый ответ должен исчезнуть: иначе повторный GET мог бы прочитать прошлый результат.
-        assertThat(response).hasCount(0);
-        button("Execute").click();
+        submit();
+        Locator response = serverResponse();
         assertThat(response).isVisible();
 
         String statusText = response.locator("tbody .response-col_status").innerText().strip();
@@ -59,6 +57,32 @@ final class OperationPanel {
         assertThat(responseBody).isVisible();
         assertThat(responseBody).not().isEmpty();
         return new UiResponse(status, responseBody.innerText().strip());
+    }
+
+    void expectParameterError(String name, String message) {
+        submit();
+        assertThat(parameterInput(name)).hasAttribute("title", message);
+        assertThat(panel.locator(".validation-errors").getByRole(AriaRole.LISTITEM))
+                .hasText("For '%s': %s.".formatted(name, message));
+        assertThat(serverResponse()).hasCount(0);
+    }
+
+    private void submit() {
+        Locator clear = button("Clear");
+        if (clear.isVisible()) {
+            clear.click();
+        }
+        // Старый ответ должен исчезнуть: иначе повторный GET мог бы прочитать прошлый результат.
+        assertThat(serverResponse()).hasCount(0);
+        button("Execute").click();
+    }
+
+    private Locator serverResponse() {
+        return panel.locator(".live-responses-table");
+    }
+
+    private Locator parameterInput(String name) {
+        return panel.locator("tr[data-param-name='" + name + "']").getByRole(AriaRole.TEXTBOX);
     }
 
     private Locator button(String name) {
