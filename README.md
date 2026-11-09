@@ -9,6 +9,7 @@
 | [Чек-лист и баг-репорты](docs/web-testing/README.md) | 102 проверки, найдено 3 дефекта |
 | [UI-тесты](docs/ui-testing/README.md) | Playwright, JUnit 5, Page Object; 5 тестов |
 | [ДЗ №5](#дз-5-junit) | Пагинация в Swagger UI и аннотации JUnit 5 |
+| [ДЗ №6](docs/test-patterns/README.md) | Паттерны автотестов в сценариях создания и замены задачи |
 
 ## Запуск
 

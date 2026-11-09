@@ -4,8 +4,9 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import java.util.Map;
+import ru.itmo.ui.TaskInput;
 import ru.itmo.ui.UiResponse;
 
 public final class SwaggerUiPage {
@@ -18,22 +19,24 @@ public final class SwaggerUiPage {
 
     public SwaggerUiPage open() {
         page.navigate("/swagger-ui/index.html");
-        waitUntilLoaded();
-        return this;
+        return awaitLoaded();
     }
 
     public SwaggerUiPage reload() {
         page.reload();
-        waitUntilLoaded();
-        return this;
+        return awaitLoaded();
     }
 
     public UiResponse createTask(String title) {
-        return operation("create").body(serialize(Map.of("title", title))).execute();
+        return createTask(TaskInput.titleOnly(title));
     }
 
     public UiResponse createTask(String title, int priority, boolean completed) {
-        return operation("create").body(taskBody(title, priority, completed)).execute();
+        return createTask(new TaskInput(title, priority, completed));
+    }
+
+    public UiResponse createTask(TaskInput task) {
+        return operation("create").body(serialize(task)).execute();
     }
 
     public UiResponse readTask(long id) {
@@ -41,7 +44,11 @@ public final class SwaggerUiPage {
     }
 
     public UiResponse replaceTask(long id, String title, int priority, boolean completed) {
-        return operation("replace").taskId(id).body(taskBody(title, priority, completed)).execute();
+        return replaceTask(id, new TaskInput(title, priority, completed));
+    }
+
+    public UiResponse replaceTask(long id, TaskInput task) {
+        return operation("replace").taskId(id).body(serialize(task)).execute();
     }
 
     public UiResponse deleteTask(long id) {
@@ -66,22 +73,24 @@ public final class SwaggerUiPage {
                 .parameter("offset", Integer.toString(offset));
     }
 
-    private void waitUntilLoaded() {
-        assertThat(page.locator(".opblock")).hasCount(5);
+    private SwaggerUiPage awaitLoaded() {
         assertThat(page.locator(".info .title")).containsText("Tasks API");
+        assertThat(operationBlock("create")).isVisible();
+        assertThat(operationBlock("list")).isVisible();
+        return this;
     }
 
     private OperationPanel operation(String operationId) {
-        return new OperationPanel(page.locator("#operations-task-controller-" + operationId)).edit();
+        return new OperationPanel(operationBlock(operationId)).edit();
     }
 
-    private String taskBody(String title, int priority, boolean completed) {
-        return serialize(Map.of("title", title, "priority", priority, "completed", completed));
+    private Locator operationBlock(String operationId) {
+        return page.locator("#operations-task-controller-" + operationId);
     }
 
-    private String serialize(Map<String, Object> value) {
+    private String serialize(TaskInput task) {
         try {
-            return json.writeValueAsString(value);
+            return json.writeValueAsString(task);
         } catch (JsonProcessingException exception) {
             throw new IllegalArgumentException("Не удалось подготовить тело запроса в UI", exception);
         }
