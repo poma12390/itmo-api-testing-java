@@ -1,0 +1,173 @@
+[
+  {
+    "method": "createsAndReadsTaskAfterReload",
+    "result": "Pass",
+    "seconds": 3.06,
+    "screenshot": "ui/createsAndReadsTaskAfterReload.png",
+    "finalVisibleResponses": [
+      {
+        "operationId": "find",
+        "status": 200,
+        "body": {
+          "id": 1,
+          "title": "Сдать лабораторную \"UI-тесты\"",
+          "priority": 2,
+          "completed": false
+        }
+      },
+      {
+        "operationId": "list",
+        "status": 200,
+        "body": [
+          {
+            "id": 1,
+            "title": "Сдать лабораторную \"UI-тесты\"",
+            "priority": 2,
+            "completed": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "method": "rejectsInvalidInputWithoutChangingStoredTask",
+    "result": "Pass",
+    "seconds": 4.308,
+    "screenshot": "ui/rejectsInvalidInputWithoutChangingStoredTask.png",
+    "finalVisibleResponses": [
+      {
+        "operationId": "find",
+        "status": 200,
+        "body": {
+          "id": 1,
+          "title": "Сохранить без изменений",
+          "priority": 2,
+          "completed": true
+        }
+      },
+      {
+        "operationId": "replace",
+        "status": 422,
+        "body": {
+          "detail": "Validation failed",
+          "field": "priority"
+        }
+      },
+      {
+        "operationId": "list",
+        "status": 200,
+        "body": [
+          {
+            "id": 1,
+            "title": "Сохранить без изменений",
+            "priority": 2,
+            "completed": true
+          }
+        ]
+      },
+      {
+        "operationId": "create",
+        "status": 422,
+        "body": {
+          "detail": "Validation failed",
+          "field": "title"
+        }
+      }
+    ]
+  },
+  {
+    "method": "appliesDefaultsToTaskWithMaximumTitleLength",
+    "result": "Pass",
+    "seconds": 1.33,
+    "screenshot": "ui/appliesDefaultsToTaskWithMaximumTitleLength.png",
+    "finalVisibleResponses": [
+      {
+        "operationId": "find",
+        "status": 200,
+        "body": {
+          "id": 1,
+          "title": "яяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяя",
+          "priority": 3,
+          "completed": false
+        }
+      },
+      {
+        "operationId": "create",
+        "status": 201,
+        "body": {
+          "id": 1,
+          "title": "яяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяя",
+          "priority": 3,
+          "completed": false
+        }
+      }
+    ]
+  },
+  {
+    "method": "deletesTaskAndShowsNotFound",
+    "result": "Pass",
+    "seconds": 3.742,
+    "screenshot": "ui/deletesTaskAndShowsNotFound.png",
+    "finalVisibleResponses": [
+      {
+        "operationId": "find",
+        "status": 404,
+        "body": {
+          "detail": "Task not found"
+        }
+      },
+      {
+        "operationId": "delete",
+        "status": 404,
+        "body": {
+          "detail": "Task not found"
+        }
+      },
+      {
+        "operationId": "list",
+        "status": 200,
+        "body": []
+      },
+      {
+        "operationId": "create",
+        "status": 201,
+        "body": {
+          "id": 1,
+          "title": "Удалить после проверки",
+          "priority": 3,
+          "completed": false
+        }
+      }
+    ]
+  },
+  {
+    "method": "replacesTaskAndPersistsChanges",
+    "result": "Pass",
+    "seconds": 2.886,
+    "screenshot": "ui/replacesTaskAndPersistsChanges.png",
+    "finalVisibleResponses": [
+      {
+        "operationId": "find",
+        "status": 200,
+        "body": {
+          "id": 1,
+          "title": "Сдать обновлённую лабораторную",
+          "priority": 5,
+          "completed": true
+        }
+      },
+      {
+        "operationId": "list",
+        "status": 200,
+        "body": [
+          {
+            "id": 1,
+            "title": "Сдать обновлённую лабораторную",
+            "priority": 5,
+            "completed": true
+          }
+        ]
+      }
+    ]
+  }
+]

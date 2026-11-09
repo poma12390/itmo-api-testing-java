@@ -1,0 +1,11 @@
+{
+  "browser" : "Chromium 153.0.8010.12",
+  "recordedAt" : "2026-10-18T00:20:13.730959+04:00[Europe/Samara]",
+  "baseUrl" : "http://127.0.0.1:51718",
+  "viewport" : "1280x900",
+  "os" : "Mac OS X 26.7.1",
+  "headless" : true,
+  "playwright" : "1.63.0",
+  "architecture" : "aarch64",
+  "java" : "25.0.2"
+}
