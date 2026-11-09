@@ -1,0 +1,608 @@
+{
+  "metadata": {
+    "application": "Tasks API 1.0.0 + Swagger UI",
+    "sourceCommit": "5c663ea7eadbbd830f438680f556f13639cfaecc",
+    "baseUrl": "http://127.0.0.1:18080",
+    "executedAt": "2026-10-17T19:25:40.725Z",
+    "timezone": "Europe/Samara (UTC+04:00)",
+    "os": "macOS 26.7.1 (25G241)",
+    "java": "25.0.2",
+    "artifactSha256": "4e1a1ce7703c9d1ae4db49960ce5174d4f7620a571eea7550295ab841fb3528f",
+    "method": "HTTP requests against a running unmodified JAR; UI results are recorded separately",
+    "summary": {
+      "total": 85,
+      "pass": 79,
+      "fail": 6
+    }
+  },
+  "repeats": [
+    {
+      "bug": "BUG-001",
+      "attempt": 1,
+      "method": "POST",
+      "expectedStatus": 400,
+      "actualStatus": 201,
+      "requestBody": "{\"title\":\"Повтор\"}{\"title\":\"Игнорируется\"}",
+      "response": {
+        "id": 150,
+        "title": "Повтор",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 149,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 149,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        },
+        {
+          "id": 150,
+          "title": "Повтор",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-001",
+      "attempt": 1,
+      "method": "PUT",
+      "expectedStatus": 400,
+      "actualStatus": 200,
+      "requestBody": "{\"title\":\"Повтор\"}{\"title\":\"Игнорируется\"}",
+      "response": {
+        "id": 151,
+        "title": "Повтор",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 151,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 151,
+          "title": "Повтор",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-002",
+      "attempt": 1,
+      "method": "POST",
+      "expectedStatus": 422,
+      "actualStatus": 201,
+      "requestBody": {
+        "title": " "
+      },
+      "response": {
+        "id": 153,
+        "title": " ",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 152,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 152,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        },
+        {
+          "id": 153,
+          "title": " ",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-002",
+      "attempt": 1,
+      "method": "PUT",
+      "expectedStatus": 422,
+      "actualStatus": 200,
+      "requestBody": {
+        "title": " "
+      },
+      "response": {
+        "id": 154,
+        "title": " ",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 154,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 154,
+          "title": " ",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-003",
+      "attempt": 1,
+      "method": "POST",
+      "expectedStatus": 201,
+      "actualStatus": 422,
+      "requestBody": {
+        "title": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+      },
+      "response": {
+        "detail": "Validation failed",
+        "field": "title"
+      },
+      "before": [
+        {
+          "id": 155,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 155,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "bug": "BUG-003",
+      "attempt": 1,
+      "method": "PUT",
+      "expectedStatus": 200,
+      "actualStatus": 422,
+      "requestBody": {
+        "title": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+      },
+      "response": {
+        "detail": "Validation failed",
+        "field": "title"
+      },
+      "before": [
+        {
+          "id": 156,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 156,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "bug": "BUG-001",
+      "attempt": 2,
+      "method": "POST",
+      "expectedStatus": 400,
+      "actualStatus": 201,
+      "requestBody": "{\"title\":\"Повтор\"}{\"title\":\"Игнорируется\"}",
+      "response": {
+        "id": 158,
+        "title": "Повтор",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 157,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 157,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        },
+        {
+          "id": 158,
+          "title": "Повтор",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-001",
+      "attempt": 2,
+      "method": "PUT",
+      "expectedStatus": 400,
+      "actualStatus": 200,
+      "requestBody": "{\"title\":\"Повтор\"}{\"title\":\"Игнорируется\"}",
+      "response": {
+        "id": 159,
+        "title": "Повтор",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 159,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 159,
+          "title": "Повтор",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-002",
+      "attempt": 2,
+      "method": "POST",
+      "expectedStatus": 422,
+      "actualStatus": 201,
+      "requestBody": {
+        "title": " "
+      },
+      "response": {
+        "id": 161,
+        "title": " ",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 160,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 160,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        },
+        {
+          "id": 161,
+          "title": " ",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-002",
+      "attempt": 2,
+      "method": "PUT",
+      "expectedStatus": 422,
+      "actualStatus": 200,
+      "requestBody": {
+        "title": " "
+      },
+      "response": {
+        "id": 162,
+        "title": " ",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 162,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 162,
+          "title": " ",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-003",
+      "attempt": 2,
+      "method": "POST",
+      "expectedStatus": 201,
+      "actualStatus": 422,
+      "requestBody": {
+        "title": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+      },
+      "response": {
+        "detail": "Validation failed",
+        "field": "title"
+      },
+      "before": [
+        {
+          "id": 163,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 163,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "bug": "BUG-003",
+      "attempt": 2,
+      "method": "PUT",
+      "expectedStatus": 200,
+      "actualStatus": 422,
+      "requestBody": {
+        "title": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+      },
+      "response": {
+        "detail": "Validation failed",
+        "field": "title"
+      },
+      "before": [
+        {
+          "id": 164,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 164,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "bug": "BUG-001",
+      "attempt": 3,
+      "method": "POST",
+      "expectedStatus": 400,
+      "actualStatus": 201,
+      "requestBody": "{\"title\":\"Повтор\"}{\"title\":\"Игнорируется\"}",
+      "response": {
+        "id": 166,
+        "title": "Повтор",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 165,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 165,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        },
+        {
+          "id": 166,
+          "title": "Повтор",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-001",
+      "attempt": 3,
+      "method": "PUT",
+      "expectedStatus": 400,
+      "actualStatus": 200,
+      "requestBody": "{\"title\":\"Повтор\"}{\"title\":\"Игнорируется\"}",
+      "response": {
+        "id": 167,
+        "title": "Повтор",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 167,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 167,
+          "title": "Повтор",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-002",
+      "attempt": 3,
+      "method": "POST",
+      "expectedStatus": 422,
+      "actualStatus": 201,
+      "requestBody": {
+        "title": " "
+      },
+      "response": {
+        "id": 169,
+        "title": " ",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 168,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 168,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        },
+        {
+          "id": 169,
+          "title": " ",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-002",
+      "attempt": 3,
+      "method": "PUT",
+      "expectedStatus": 422,
+      "actualStatus": 200,
+      "requestBody": {
+        "title": " "
+      },
+      "response": {
+        "id": 170,
+        "title": " ",
+        "priority": 3,
+        "completed": false
+      },
+      "before": [
+        {
+          "id": 170,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 170,
+          "title": " ",
+          "priority": 3,
+          "completed": false
+        }
+      ]
+    },
+    {
+      "bug": "BUG-003",
+      "attempt": 3,
+      "method": "POST",
+      "expectedStatus": 201,
+      "actualStatus": 422,
+      "requestBody": {
+        "title": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+      },
+      "response": {
+        "detail": "Validation failed",
+        "field": "title"
+      },
+      "before": [
+        {
+          "id": 171,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 171,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "bug": "BUG-003",
+      "attempt": 3,
+      "method": "PUT",
+      "expectedStatus": 200,
+      "actualStatus": 422,
+      "requestBody": {
+        "title": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+      },
+      "response": {
+        "detail": "Validation failed",
+        "field": "title"
+      },
+      "before": [
+        {
+          "id": 172,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ],
+      "after": [
+        {
+          "id": 172,
+          "title": "Исходная задача",
+          "priority": 2,
+          "completed": true
+        }
+      ]
+    }
+  ]
+}

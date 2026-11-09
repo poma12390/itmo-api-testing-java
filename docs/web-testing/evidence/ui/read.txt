@@ -1,0 +1,242 @@
+Browser tab: 2, Title: "Swagger UI", URL: "http://127.0.0.1:18080/swagger-ui/index.html#/task-controller/find".
+0 AXWebArea Swagger UI, URL: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/find
+	1 container
+		2 link Description: Skip to operations, Value: 127.0.0.1:18080/swagger-ui/index.html#operations
+		3 image
+		4 container
+			5 text field (settable) Value: /openapi.json, ID: download-url-input
+			6 button Explore
+		7 checkbox Description: Switch to light mode, Value: 1
+		8 image
+		9 container
+			10 heading Tasks API 1.0.0 OAS 3.1, Value: 1
+				11 text Tasks API
+				12 container
+					13 text 1.0.0
+				14 container
+					15 text OAS  3.1
+			16 link Description: /openapi.json, Value: 127.0.0.1:18080/openapi.json
+		17 text Servers
+		18 pop up button (collapsed, settable) Value: /, ID: servers, Secondary Actions: Expand
+			19 menu
+				20 (selected) /
+		21 container operations
+			22 container
+				23 heading task-controller Collapse operation, Value: 3, ID: operations-tag-task-controller
+					24 link Description: task-controller, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller
+					25 button (expanded) Description: Collapse operation, Secondary Actions: Collapse
+				26 container operations-task-controller-find
+					27 button (expanded) GET /tasks /{taskId} Get a task, Secondary Actions: Collapse
+						28 text GET
+						29 link Description: /tasks /{taskId}, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/find
+						30 text Get a task
+					31 container Copy path to clipboard
+						32 button Copy path to clipboard
+					33 button (expanded) Description: get ​/tasks​/{taskId}, Secondary Actions: Collapse
+					84 heading Parameters, Value: 4
+						85 text Parameters
+					86 button Cancel
+					87 table
+						88 row
+							89 cell
+								90 text Name
+							91 cell
+								92 text Description
+						93 row
+							94 cell
+								95 container
+									96 text taskId  * required
+								97 container
+									98 text integer ($ int64 )
+								99 container
+									100 text ( path )
+							184 cell
+								185 text field (settable) 173
+					186 button Execute
+					187 button Clear
+					101 heading Responses, Value: 4
+						102 text Responses
+					188 container
+						189 heading Curl, Value: 4
+							190 text Curl
+						191 container Copy cURL command to clipboard
+							192 button Copy cURL command to clipboard
+						193 container
+							194 text curl -X  'GET'  \
+ 'http://127.0.0.1:18080/tasks/173'  \
+   -H  'accept: application/json'
+					195 heading Request URL, Value: 4
+						196 text Request URL
+					197 text http://127.0.0.1:18080/tasks/173
+					198 heading Server response, Value: 4
+						199 text Server response
+					200 table
+						201 row
+							202 cell
+								203 text Code
+							204 cell
+								205 text Details
+						206 row
+							207 cell
+								208 text 200
+							209 cell
+								210 heading Response body, Value: 5
+									211 text Response body
+								212 container
+									213 container Copy code to clipboard
+										214 button Copy code to clipboard
+									215 button Download
+									216 container
+										217 text {
+ "id" :  173 ,
+ "title" :  "Проверка через браузер" ,
+ "priority" :  2 ,
+ "completed" :  false }
+								218 heading Response headers, Value: 5
+									219 text Response headers
+								220 text connection :  keep-alive content-type :  application/json date :  Sat,17 Oct 2026 19:26:52 GMT keep-alive :  timeout=60 transfer-encoding :  chunked
+					221 heading Responses, Value: 4
+						222 text Responses
+					103 table get_tasks__taskId__responses
+						104 row
+							105 cell
+								106 text Code
+							107 cell
+								108 text Description
+							109 cell
+								110 text Links
+						111 row
+							112 cell
+								113 text 200
+							114 cell
+								115 text Task found
+								116 container
+									117 text Media type
+									118 pop up button (collapsed, settable) Description: Media Type, Value: application/json, Secondary Actions: Expand
+										119 menu
+											120 (selected) application/json
+									121 text Controls  Accept  header.
+								122 tab group
+									123 tab (selected, settable, boolean) Example Value, Value: 1, ID: +1yjZ6k=
+									124 tab (selectable, settable, boolean) Schema, Value: 0, ID: bHoCzYo=
+								125 container Description: Example Value, ID: Q4xlegk=
+									126 container
+										127 text {
+ "id" :  1 ,
+ "title" :  "string" ,
+ "priority" :  1 ,
+ "completed" :  true }
+							128 cell
+								129 text No links
+						130 row
+							131 cell
+								132 text 404
+							133 cell
+								134 text Task not found
+								135 container
+									136 text Media type
+									137 pop up button (collapsed, settable) Description: Media Type, Value: application/json, Secondary Actions: Expand
+										138 menu
+											139 (selected) application/json
+								140 tab group
+									141 tab (selected, settable, boolean) Example Value, Value: 1, ID: HXPNsBI=
+									142 tab (selectable, settable, boolean) Schema, Value: 0, ID: YQ/9tGI=
+								143 container Description: Example Value, ID: TXHf42E=
+									144 container
+										145 text {
+ "detail" :  "string" ,
+ "field" :  "string" }
+							146 cell
+								147 text No links
+						148 row
+							149 cell
+								150 text 405
+							151 cell
+								152 text Method not allowed
+								153 container
+									154 text Media type
+									155 pop up button (collapsed, settable) Description: Media Type, Value: application/json, Secondary Actions: Expand
+										156 menu
+											157 (selected) application/json
+								158 tab group
+									159 tab (selected, settable, boolean) Example Value, Value: 1, ID: gceY8mI=
+									160 tab (selectable, settable, boolean) Schema, Value: 0, ID: ulfGFwA=
+								161 container Description: Example Value, ID: B0+RjY8=
+									162 container
+										163 text {
+ "detail" :  "string" ,
+ "field" :  "string" }
+							164 cell
+								165 text No links
+						166 row
+							167 cell
+								168 text 422
+							169 cell
+								170 text Validation error
+								171 container
+									172 text Media type
+									173 pop up button (collapsed, settable) Description: Media Type, Value: application/json, Secondary Actions: Expand
+										174 menu
+											175 (selected) application/json
+								176 tab group
+									177 tab (selected, settable, boolean) Example Value, Value: 1, ID: /mutlg4=
+									178 tab (selectable, settable, boolean) Schema, Value: 0, ID: tVIXbFg=
+								179 container Description: Example Value, ID: cDGNfTE=
+									180 container
+										181 text {
+ "detail" :  "string" ,
+ "field" :  "string" }
+							182 cell
+								183 text No links
+				34 container operations-task-controller-replace
+					35 button (collapsed) PUT /tasks /{taskId} Replace a task, Secondary Actions: Expand
+						36 text PUT
+						37 link Description: /tasks /{taskId}, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/replace
+						38 text Replace a task
+					39 container Copy path to clipboard
+						40 button Copy path to clipboard
+					41 button (collapsed) Description: put ​/tasks​/{taskId}, Secondary Actions: Expand
+				42 container operations-task-controller-delete
+					43 button (collapsed) DELETE /tasks /{taskId} Delete a task, Secondary Actions: Expand
+						44 text DELETE
+						45 link Description: /tasks /{taskId}, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/delete
+						46 text Delete a task
+					47 container Copy path to clipboard
+						48 button Copy path to clipboard
+					49 button (collapsed) Description: delete ​/tasks​/{taskId}, Secondary Actions: Expand
+				50 container operations-task-controller-list
+					51 button (collapsed) GET /tasks List tasks, Secondary Actions: Expand
+						52 text GET
+						53 link Description: /tasks, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/list
+						54 text List tasks
+					55 container Copy path to clipboard
+						56 button Copy path to clipboard
+					57 button (collapsed) Description: get ​/tasks, Secondary Actions: Expand
+				58 container operations-task-controller-create
+					59 button (collapsed) POST /tasks Create a task, Secondary Actions: Expand
+						60 text POST
+						61 link Description: /tasks, Value: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/create
+						62 text Create a task
+					63 container Copy path to clipboard
+						64 button Copy path to clipboard
+					65 button (collapsed) Description: post ​/tasks, Secondary Actions: Expand
+			66 container
+				67 heading Schemas, Value: 4
+					68 button (expanded) Schemas, Secondary Actions: Collapse
+				69 container
+					70 button TaskRequest
+						71 text TaskRequest
+					72 button Expand all
+					73 text object
+				74 container
+					75 button Task
+						76 text Task
+					77 button Expand all
+					78 text object
+				79 container
+					80 button ApiError
+						81 text ApiError
+					82 button Expand all
+					83 text object
+
+The focused UI element is 0 AXWebArea Swagger UI, URL: 127.0.0.1:18080/swagger-ui/index.html#/task-controller/find
