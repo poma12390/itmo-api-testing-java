@@ -3,16 +3,22 @@ package ru.itmo.api;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Named.named;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import ru.itmo.ui.TaskInput;
 import ru.itmo.ui.UiResponse;
 
 @Tag("ui")
@@ -24,14 +30,13 @@ class TaskUiIT extends UiTestSupport {
     @Test
     @DisplayName("UI-01: создание и чтение задачи после перезагрузки страницы")
     void createsAndReadsTaskAfterReload() throws JsonProcessingException {
-        String title = "Сдать лабораторную \"UI-тесты\"";
-        UiResponse created = ui.createTask(title, 2, false);
+        var input = new TaskInput("Сдать лабораторную \"UI-тесты\"", 2, false);
+        UiResponse created = ui.createTask(input);
         long id = taskId(created);
-        JsonNode expected = task(id, title, 2, false);
+        JsonNode expected = task(id, input);
         assertEquals(expected, created.json());
 
-        ui.reload();
-        UiResponse fetched = ui.readTask(id);
+        UiResponse fetched = ui.reload().readTask(id);
         assertEquals(200, fetched.status());
         assertEquals(expected, fetched.json());
         assertListContainsExactly(expected);
@@ -51,24 +56,33 @@ class TaskUiIT extends UiTestSupport {
         assertEquals(expected, fetched.json());
     }
 
-    @Test
-    @DisplayName("UI-03: изменение всех полей с сохранением ID и результата")
-    void replacesTaskAndPersistsChanges() throws JsonProcessingException {
-        UiResponse created = ui.createTask("А", 1, false);
+    @ParameterizedTest(name = "{index}. {0}")
+    @MethodSource("replacements")
+    @DisplayName("UI-03: замена задачи с сохранением ID и результата")
+    void replacesTaskAndPersistsChanges(TaskInput replacement, TaskInput original, TaskInput expectedState)
+            throws JsonProcessingException {
+        UiResponse created = ui.createTask(original);
         long id = taskId(created);
-        assertEquals(task(id, "А", 1, false), created.json());
+        assertEquals(task(id, original), created.json());
 
-        String title = "Сдать обновлённую лабораторную";
-        JsonNode expected = task(id, title, 5, true);
-        UiResponse updated = ui.replaceTask(id, title, 5, true);
+        JsonNode expected = task(id, expectedState);
+        UiResponse updated = ui.replaceTask(id, replacement);
         assertEquals(200, updated.status());
         assertEquals(expected, updated.json());
 
-        ui.reload();
-        UiResponse fetched = ui.readTask(id);
+        UiResponse fetched = ui.reload().readTask(id);
         assertEquals(200, fetched.status());
         assertEquals(expected, fetched.json());
         assertListContainsExactly(expected);
+    }
+
+    static Stream<Arguments> replacements() {
+        var explicit = new TaskInput("Сдать обновлённую лабораторную", 5, true);
+        var titleOnly = TaskInput.titleOnly("Сбросить приоритет и статус");
+        return Stream.of(
+                Arguments.of(named("Все поля заданы явно", explicit), new TaskInput("А", 1, false), explicit),
+                Arguments.of(named("Пропущенные поля получают значения по умолчанию", titleOnly),
+                        new TaskInput("А", 1, true), new TaskInput(titleOnly.title(), 3, false)));
     }
 
     @Test
@@ -137,6 +151,10 @@ class TaskUiIT extends UiTestSupport {
             throws JsonProcessingException {
         return json.readTree(json.writeValueAsString(Map.of(
                 "id", id, "title", title, "priority", priority, "completed", completed)));
+    }
+
+    private JsonNode task(long id, TaskInput value) throws JsonProcessingException {
+        return task(id, value.title(), value.priority(), value.completed());
     }
 
     private void assertListContainsExactly(JsonNode... tasks) {

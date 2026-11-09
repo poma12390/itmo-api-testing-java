@@ -1,0 +1,96 @@
+[
+  {
+    "case": "explicit-fields",
+    "exchanges": [
+      {
+        "method": "POST",
+        "path": "/tasks",
+        "status": 201,
+        "request": {
+          "title": "А",
+          "priority": 1,
+          "completed": false
+        },
+        "response": {
+          "id": 1,
+          "title": "А",
+          "priority": 1,
+          "completed": false
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/tasks/1",
+        "status": 200,
+        "request": {
+          "title": "Сдать обновлённую лабораторную",
+          "priority": 5,
+          "completed": true
+        },
+        "response": {
+          "id": 1,
+          "title": "Сдать обновлённую лабораторную",
+          "priority": 5,
+          "completed": true
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/tasks/1",
+        "status": 200,
+        "response": {
+          "id": 1,
+          "title": "Сдать обновлённую лабораторную",
+          "priority": 5,
+          "completed": true
+        }
+      }
+    ]
+  },
+  {
+    "case": "omitted-fields",
+    "exchanges": [
+      {
+        "method": "POST",
+        "path": "/tasks",
+        "status": 201,
+        "request": {
+          "title": "А",
+          "priority": 1,
+          "completed": true
+        },
+        "response": {
+          "id": 1,
+          "title": "А",
+          "priority": 1,
+          "completed": true
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/tasks/1",
+        "status": 200,
+        "request": {
+          "title": "Сбросить приоритет и статус"
+        },
+        "response": {
+          "id": 1,
+          "title": "Сбросить приоритет и статус",
+          "priority": 3,
+          "completed": false
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/tasks/1",
+        "status": 200,
+        "response": {
+          "id": 1,
+          "title": "Сбросить приоритет и статус",
+          "priority": 3,
+          "completed": false
+        }
+      }
+    ]
+  }
+]

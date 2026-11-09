@@ -1,0 +1,10 @@
+$ MAVEN_USER_HOME="$PWD/.m2" ./mvnw -o -B --no-transfer-progress -Pui clean verify
+
+[INFO] Tests run: 95, Failures: 0, Errors: 0, Skipped: 0
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 1
+[INFO] All coverage checks have been met.
+[INFO] BUILD SUCCESS
+[INFO] Total time:  45.672 s
+[INFO] Finished at: 2026-11-10T01:27:56+03:00
+
+JaCoCo LINE: 77/81 (95.06%)

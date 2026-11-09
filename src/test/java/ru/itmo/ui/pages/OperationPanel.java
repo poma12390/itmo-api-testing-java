@@ -9,9 +9,11 @@ import ru.itmo.ui.UiResponse;
 /** Общая часть пяти раскрывающихся операций Swagger UI. */
 final class OperationPanel {
     private final Locator panel;
+    private final ServerResponsePanel response;
 
     OperationPanel(Locator panel) {
         this.panel = panel;
+        response = new ServerResponsePanel(panel);
     }
 
     OperationPanel edit() {
@@ -44,19 +46,7 @@ final class OperationPanel {
 
     UiResponse execute() {
         submit();
-        Locator response = serverResponse();
-        assertThat(response).isVisible();
-
-        String statusText = response.locator("tbody .response-col_status").innerText().strip();
-        int status = Integer.parseInt(statusText.split("\\s+")[0]);
-        Locator responseBody = response.locator("tbody .response-col_description .highlight-code pre");
-        if (status == 204) {
-            assertThat(responseBody).hasCount(0);
-            return new UiResponse(status, "");
-        }
-        assertThat(responseBody).isVisible();
-        assertThat(responseBody).not().isEmpty();
-        return new UiResponse(status, responseBody.innerText().strip());
+        return response.awaitResponse();
     }
 
     void expectParameterError(String name, String message) {
@@ -64,7 +54,7 @@ final class OperationPanel {
         assertThat(parameterInput(name)).hasAttribute("title", message);
         assertThat(panel.locator(".validation-errors").getByRole(AriaRole.LISTITEM))
                 .hasText("For '%s': %s.".formatted(name, message));
-        assertThat(serverResponse()).hasCount(0);
+        response.expectEmpty();
     }
 
     private void submit() {
@@ -73,12 +63,8 @@ final class OperationPanel {
             clear.click();
         }
         // Старый ответ должен исчезнуть: иначе повторный GET мог бы прочитать прошлый результат.
-        assertThat(serverResponse()).hasCount(0);
+        response.expectEmpty();
         button("Execute").click();
-    }
-
-    private Locator serverResponse() {
-        return panel.locator(".live-responses-table");
     }
 
     private Locator parameterInput(String name) {
