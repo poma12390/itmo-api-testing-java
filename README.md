@@ -10,6 +10,7 @@
 | [UI-тесты](docs/ui-testing/README.md) | Playwright, JUnit 5, Page Object; 5 тестов |
 | [ДЗ №5](#дз-5-junit) | Пагинация в Swagger UI и аннотации JUnit 5 |
 | [ДЗ №6](docs/test-patterns/README.md) | Паттерны автотестов в сценариях создания и замены задачи |
+| [ДЗ №7](docs/locators/README.md) | CSS- и XPath-локаторы Swagger UI |
 
 ## Запуск
 

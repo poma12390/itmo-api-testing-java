@@ -3,21 +3,25 @@ package ru.itmo.ui.pages;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.options.AriaRole;
 import ru.itmo.ui.UiResponse;
 
 /** Общая часть пяти раскрывающихся операций Swagger UI. */
 final class OperationPanel {
     private final Locator panel;
+    private final Locator toggle;
+    private final Locator requestBody;
+    private final Locator validationErrors;
     private final ServerResponsePanel response;
 
     OperationPanel(Locator panel) {
         this.panel = panel;
+        toggle = panel.locator("css=button.opblock-summary-control[aria-expanded]");
+        requestBody = panel.locator("css=textarea.body-param__text");
+        validationErrors = panel.locator("css=.validation-errors li");
         response = new ServerResponsePanel(panel);
     }
 
     OperationPanel edit() {
-        Locator toggle = panel.locator(".opblock-summary-control");
         if (!"true".equals(toggle.getAttribute("aria-expanded"))) {
             toggle.click();
         }
@@ -40,7 +44,7 @@ final class OperationPanel {
     }
 
     OperationPanel body(String json) {
-        panel.locator("textarea.body-param__text").fill(json);
+        requestBody.fill(json);
         return this;
     }
 
@@ -52,7 +56,7 @@ final class OperationPanel {
     void expectParameterError(String name, String message) {
         submit();
         assertThat(parameterInput(name)).hasAttribute("title", message);
-        assertThat(panel.locator(".validation-errors").getByRole(AriaRole.LISTITEM))
+        assertThat(validationErrors)
                 .hasText("For '%s': %s.".formatted(name, message));
         response.expectEmpty();
     }
@@ -68,11 +72,10 @@ final class OperationPanel {
     }
 
     private Locator parameterInput(String name) {
-        return panel.locator("tr[data-param-name='" + name + "']").getByRole(AriaRole.TEXTBOX);
+        return panel.locator("css=tr[data-param-name='%s'] input[type='text']".formatted(name));
     }
 
     private Locator button(String name) {
-        return panel.getByRole(AriaRole.BUTTON,
-                new Locator.GetByRoleOptions().setName(name).setExact(true));
+        return panel.locator("xpath=.//button[normalize-space(.)='%s']".formatted(name));
     }
 }

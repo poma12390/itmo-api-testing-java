@@ -11,10 +11,12 @@ import ru.itmo.ui.UiResponse;
 
 public final class SwaggerUiPage {
     private final Page page;
+    private final Locator title;
     private final ObjectMapper json = new ObjectMapper();
 
     public SwaggerUiPage(Page page) {
         this.page = page;
+        title = page.locator("css=#swagger-ui .info h1.title");
     }
 
     public SwaggerUiPage open() {
@@ -74,7 +76,7 @@ public final class SwaggerUiPage {
     }
 
     private SwaggerUiPage awaitLoaded() {
-        assertThat(page.locator(".info .title")).containsText("Tasks API");
+        assertThat(title).containsText("Tasks API");
         assertThat(operationBlock("create")).isVisible();
         assertThat(operationBlock("list")).isVisible();
         return this;
@@ -85,7 +87,7 @@ public final class SwaggerUiPage {
     }
 
     private Locator operationBlock(String operationId) {
-        return page.locator("#operations-task-controller-" + operationId);
+        return page.locator("css=#operations-task-controller-" + operationId);
     }
 
     private String serialize(TaskInput task) {
